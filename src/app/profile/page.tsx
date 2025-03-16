@@ -161,3 +161,112 @@ export default function ProfilePage() {
                 style={{ width: '100%', height: '100px' }}
               />
             </div>
+
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>
+                Avatar URL:
+              </label>
+              <input 
+                type="text" 
+                name="avatar_url" 
+                value={formData.avatar_url} 
+                onChange={handleChange} 
+                className="input-98"
+                style={{ width: '100%' }}
+              />
+            </div>
+
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>
+                Social Links:
+              </label>
+              
+              <div style={{ marginBottom: '10px' }}>
+                <label style={{ display: 'block', marginBottom: '5px' }}>
+                  Twitter:
+                </label>
+                <input 
+                  type="text" 
+                  name="twitter" 
+                  value={socialLinks.twitter} 
+                  onChange={handleSocialLinkChange} 
+                  className="input-98"
+                  style={{ width: '100%' }}
+                  placeholder="https://twitter.com/yourusername"
+                />
+              </div>
+              
+              <div style={{ marginBottom: '10px' }}>
+                <label style={{ display: 'block', marginBottom: '5px' }}>
+                  GitHub:
+                </label>
+                <input 
+                  type="text" 
+                  name="github" 
+                  value={socialLinks.github} 
+                  onChange={handleSocialLinkChange} 
+                  className="input-98"
+                  style={{ width: '100%' }}
+                  placeholder="https://github.com/yourusername"
+                />
+              </div>
+              
+              <div style={{ marginBottom: '10px' }}>
+                <label style={{ display: 'block', marginBottom: '5px' }}>
+                  Website:
+                </label>
+                <input 
+                  type="text" 
+                  name="website" 
+                  value={socialLinks.website} 
+                  onChange={handleSocialLinkChange} 
+                  className="input-98"
+                  style={{ width: '100%' }}
+                  placeholder="https://yourwebsite.com"
+                />
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>
+                Custom CSS:
+              </label>
+              <textarea 
+                name="custom_css" 
+                value={formData.custom_css} 
+                onChange={handleChange} 
+                className="input-98"
+                style={{ width: '100%', height: '100px', fontFamily: 'monospace' }}
+                placeholder="/* Your custom CSS here */"
+              />
+            </div>
+
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ display: 'block', marginBottom: '5px' }}>
+                Custom HTML:
+              </label>
+              <textarea 
+                name="custom_html" 
+                value={formData.custom_html} 
+                onChange={handleChange} 
+                className="input-98"
+                style={{ width: '100%', height: '100px', fontFamily: 'monospace' }}
+                placeholder="<!-- Your custom HTML here -->"
+              />
+            </div>
+
+            <div style={{ textAlign: 'right' }}>
+              <button 
+                type="submit" 
+                className="btn-98" 
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Saving...' : 'Save Profile'}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
