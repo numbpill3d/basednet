@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "env": {
+    "DATABASE_URL": "postgresql://user:password@host:5432/basednet",
+    "NEXTAUTH_URL": "https://your-domain.com",
+    "NEXTAUTH_SECRET": "@nextauth-secret",
+    "INDIE_AUTH_CLIENT_ID": "@indie-auth-client-id",
+    "INDIE_AUTH_CLIENT_SECRET": "@indie-auth-client-secret",
+    "IPFS_PROJECT_ID": "@ipfs-project-id",
+    "IPFS_PROJECT_SECRET": "@ipfs-project-secret"
+  },
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
+  "regions": ["iad1"],
+  "functions": {
+    "api/**/*.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  }
+}

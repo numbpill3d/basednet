@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Additional Global Styles */
+.win98-desktop {
+  min-height: 100vh;
+  padding-bottom: 30px; /* Space for status bar */
+  background-color: var(--win98-gray);
+  background-image: linear-gradient(
+    45deg,
+    var(--retrowave-purple) 0%,
+    transparent 20%,
+    transparent 80%,
+    var(--retrowave-pink) 100%
+  );
+  background-attachment: fixed;
+}
+
+/* Custom scrollbar for desktop */
+.win98-desktop::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.win98-desktop::-webkit-scrollbar-track {
+  background: var(--win98-gray);
+  border: 2px solid;
+  border-color: var(--win98-darker) var(--win98-light) var(--win98-light) var(--win98-darker);
+}
+
+.win98-desktop::-webkit-scrollbar-thumb {
+  background: var(--win98-gray);
+  border: 2px solid;
+  border-color: var(--win98-light) var(--win98-darker) var(--win98-darker) var(--win98-light);
+}
+
+/* Ensure windows are draggable-looking */
+.window {
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.window-title {
+  cursor: move;
+}
+
+/* ASCII art optimization */
+.ascii-art {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1;
+  white-space: pre;
+  text-align: center;
+  color: var(--win98-darker);
+}
+
+/* Retrowave effects */
+.retrowave-glow {
+  animation: neon 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neon {
+  from {
+    text-shadow: 
+      0 0 5px var(--retrowave-pink),
+      0 0 10px var(--retrowave-blue),
+      0 0 15px var(--retrowave-purple);
+  }
+  to {
+    text-shadow: 
+      0 0 2px var(--retrowave-pink),
+      0 0 5px var(--retrowave-blue),
+      0 0 7px var(--retrowave-purple);
+  }
+}
+
+/* Start menu animation */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.start-menu {
+  animation: slideUp 0.2s ease-out;
+}
+
+/* Window focus effect */
+.window:focus-within {
+  z-index: 100;
+  box-shadow: 
+    2px 2px 0 rgba(0,0,0,0.1),
+    0 0 10px var(--retrowave-purple);
+}
+
+/* Loading animation enhancement */
+.loading-98 {
+  box-shadow: 0 0 5px var(--retrowave-blue);
+}
+
+/* Make buttons more interactive */
+.btn-98:hover {
+  background: linear-gradient(
+    to bottom,
+    var(--win98-light),
+    var(--win98-gray)
+  );
+}
+
+.btn-98:active {
+  background: var(--win98-dark);
+  color: var(--win98-light);
+}
+
+/* Table enhancements */
+table tr:hover {
+  background: var(--win98-blue);
+  color: white;
+}
+
+table tr:hover a {
+  color: white;
+}
+
+/* Status bar enhancements */
+.status-bar-98 {
+  background: linear-gradient(
+    to right,
+    var(--win98-gray),
+    var(--win98-light)
+  );
+  border-top: 2px solid var(--win98-darker);
+  height: 28px;
+  padding: 4px 8px;
+  font-size: 12px;
+}

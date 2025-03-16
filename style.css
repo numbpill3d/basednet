@@ -1,0 +1,183 @@
+/* Windows 98/Retrowave Theme */
+:root {
+  --win98-gray: #c0c0c0;
+  --win98-dark: #808080;
+  --win98-darker: #404040;
+  --win98-light: #dfdfdf;
+  --win98-blue: #000080;
+  --retrowave-pink: #ff00ff;
+  --retrowave-blue: #00ffff;
+  --retrowave-purple: #9900ff;
+}
+
+/* Global Reset with retro font */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--win98-gray);
+  font-family: "MS Sans Serif", "Pixelated MS Sans Serif", Arial;
+  color: var(--win98-darker);
+  text-shadow: 1px 1px var(--win98-light);
+  line-height: 1.4;
+}
+
+/* Windows 98 Window Styling */
+.window {
+  background: var(--win98-gray);
+  border: 2px solid;
+  border-color: var(--win98-light) var(--win98-darker) var(--win98-darker) var(--win98-light);
+  padding: 2px;
+  margin: 16px;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+}
+
+.window-title {
+  background: var(--win98-blue);
+  color: white;
+  font-weight: bold;
+  padding: 3px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.window-content {
+  padding: 10px;
+  background: var(--win98-gray);
+}
+
+/* Retro Buttons */
+.btn-98 {
+  background: var(--win98-gray);
+  border: 2px solid;
+  border-color: var(--win98-light) var(--win98-darker) var(--win98-darker) var(--win98-light);
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--win98-darker);
+  cursor: pointer;
+  margin: 4px;
+}
+
+.btn-98:active {
+  border-color: var(--win98-darker) var(--win98-light) var(--win98-light) var(--win98-darker);
+  padding: 5px 9px 3px 11px;
+}
+
+/* Navigation Bar */
+.navbar-98 {
+  background: var(--win98-gray);
+  border-bottom: 2px solid var(--win98-darker);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+}
+
+/* Grid Layout */
+.grid-98 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
+
+/* ASCII Art Styling */
+.ascii-art {
+  font-family: "Courier New", monospace;
+  white-space: pre;
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--win98-darker);
+  margin: 10px 0;
+}
+
+/* Retrowave Accents */
+.retrowave-glow {
+  text-shadow: 
+    0 0 5px var(--retrowave-pink),
+    0 0 10px var(--retrowave-blue),
+    0 0 15px var(--retrowave-purple);
+}
+
+/* Status Bar */
+.status-bar-98 {
+  background: var(--win98-gray);
+  border-top: 2px solid var(--win98-darker);
+  padding: 4px;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Links */
+a {
+  color: var(--win98-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Form Elements */
+input, textarea {
+  background: white;
+  border: 2px solid;
+  border-color: var(--win98-darker) var(--win98-light) var(--win98-light) var(--win98-darker);
+  padding: 3px 5px;
+  font-family: inherit;
+}
+
+/* Table Styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid var(--win98-darker);
+  padding: 4px 8px;
+  text-align: left;
+}
+
+th {
+  background: var(--win98-blue);
+  color: white;
+  text-shadow: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--win98-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--win98-gray);
+  border: 2px solid;
+  border-color: var(--win98-light) var(--win98-darker) var(--win98-darker) var(--win98-light);
+}
+
+/* Loading Animation */
+.loading-98 {
+  border: 2px solid var(--win98-darker);
+  border-top: 2px solid var(--win98-blue);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin-98 1s linear infinite;
+}
+
+@keyframes spin-98 {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
