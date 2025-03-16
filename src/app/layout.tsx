@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Roboto_Mono } from 'next/font/google'
 import './globals.css'
 import './win98.css'
+import Providers from '../components/Providers'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -29,7 +30,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${robotoMono.variable}`}>
       <body className="win98-desktop">
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

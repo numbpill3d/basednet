@@ -1,18 +1,51 @@
-'use client';
-import React from 'react';
+e'use client';
+import React, { useEffect, useState } from 'react';
+import Navigation from '../components/Navigation';
+import { useAuth } from '../contexts/AuthContext';
+import { api } from '../lib/api';
+
+interface Stats {
+  totalSites: number;
+  activeToday: number;
+  webrings: number;
+  ipfsNodes: number;
+}
 
 export default function Home() {
+  const { isAuthenticated, user, profile } = useAuth();
+  const [stats, setStats] = useState<Stats>({
+    totalSites: 88888,
+    activeToday: 1337,
+    webrings: 42,
+    ipfsNodes: 404
+  });
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Example of fetching data from the API
+  useEffect(() => {
+    if (isAuthenticated) {
+      setIsLoading(true);
+      // This is just a placeholder - in a real app, you'd fetch actual stats
+      api.ipfs.getContent()
+        .then(response => {
+          if (response.data?.stats) {
+            console.log('IPFS stats:', response.data.stats);
+            // Update stats with real data if available
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching IPFS stats:', error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [isAuthenticated]);
+
   return (
     <div className="win98-desktop">
       {/* Navigation Bar */}
-      <nav className="navbar-98">
-        <button className="btn-98">Start</button>
-        <div style={{ marginLeft: '10px' }}>|</div>
-        <button className="btn-98">My Sites</button>
-        <button className="btn-98">Browse</button>
-        <button className="btn-98">Webrings</button>
-        <button className="btn-98">Help</button>
-      </nav>
+      <Navigation />
 
       {/* ASCII Art Logo */}
       <div className="window" style={{ maxWidth: '600px', margin: '20px auto' }}>
@@ -36,6 +69,12 @@ export default function Home() {
 `}
           </pre>
           <p style={{ textAlign: 'center' }}>Web 1.0 Lives Forever</p>
+          
+          {isAuthenticated && (
+            <div style={{ textAlign: 'center', marginTop: '10px' }}>
+              <p>Welcome back, {profile?.display_name || user?.username}!</p>
+            </div>
+          )}
         </div>
       </div>
 
@@ -85,36 +124,42 @@ export default function Home() {
           </div>
           <div className="window-content">
             <div style={{ marginBottom: '10px' }}>
-              <button className="btn-98">Upload Files</button>
-              <button className="btn-98">New Folder</button>
-              <button className="btn-98">Edit HTML</button>
+              <button className="btn-98" disabled={!isAuthenticated}>Upload Files</button>
+              <button className="btn-98" disabled={!isAuthenticated}>New Folder</button>
+              <button className="btn-98" disabled={!isAuthenticated}>Edit HTML</button>
             </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Size</th>
-                  <th>Type</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>📁 images</td>
-                  <td>--</td>
-                  <td>Folder</td>
-                </tr>
-                <tr>
-                  <td>📄 index.html</td>
-                  <td>2.4 KB</td>
-                  <td>HTML</td>
-                </tr>
-                <tr>
-                  <td>📄 style.css</td>
-                  <td>1.8 KB</td>
-                  <td>CSS</td>
-                </tr>
-              </tbody>
-            </table>
+            {isAuthenticated ? (
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>📁 images</td>
+                    <td>--</td>
+                    <td>Folder</td>
+                  </tr>
+                  <tr>
+                    <td>📄 index.html</td>
+                    <td>2.4 KB</td>
+                    <td>HTML</td>
+                  </tr>
+                  <tr>
+                    <td>📄 style.css</td>
+                    <td>1.8 KB</td>
+                    <td>CSS</td>
+                  </tr>
+                </tbody>
+              </table>
+            ) : (
+              <div style={{ padding: '10px', textAlign: 'center' }}>
+                <p>Please log in to manage your site files.</p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -147,26 +192,30 @@ export default function Home() {
             <span>×</span>
           </div>
           <div className="window-content">
-            <table>
-              <tbody>
-                <tr>
-                  <td>Total Sites:</td>
-                  <td>88,888</td>
-                </tr>
-                <tr>
-                  <td>Active Today:</td>
-                  <td>1,337</td>
-                </tr>
-                <tr>
-                  <td>Webrings:</td>
-                  <td>42</td>
-                </tr>
-                <tr>
-                  <td>IPFS Nodes:</td>
-                  <td>404</td>
-                </tr>
-              </tbody>
-            </table>
+            {isLoading ? (
+              <div className="loading-98" style={{ margin: '20px auto' }}></div>
+            ) : (
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Total Sites:</td>
+                    <td>{stats.totalSites.toLocaleString()}</td>
+                  </tr>
+                  <tr>
+                    <td>Active Today:</td>
+                    <td>{stats.activeToday.toLocaleString()}</td>
+                  </tr>
+                  <tr>
+                    <td>Webrings:</td>
+                    <td>{stats.webrings.toLocaleString()}</td>
+                  </tr>
+                  <tr>
+                    <td>IPFS Nodes:</td>
+                    <td>{stats.ipfsNodes.toLocaleString()}</td>
+                  </tr>
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
       </div>
@@ -176,7 +225,7 @@ export default function Home() {
         <div>Connected to IPFS Network</div>
         <div>
           <span className="loading-98" style={{ marginRight: '8px' }}></span>
-          Syncing with 404 peers
+          Syncing with {stats.ipfsNodes} peers
         </div>
       </div>
     </div>
