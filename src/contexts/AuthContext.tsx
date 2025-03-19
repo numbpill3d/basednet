@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import { api } from '../lib/api';
+import { api } from '@/lib/api';
 
 // Define types for our context
 interface User {
