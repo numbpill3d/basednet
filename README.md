@@ -2,6 +2,10 @@
 
 BasedNet is a next-generation indie web platform that allows users to create, customize, and host personal websites with P2P hosting, webrings, and AI-powered discovery.
 
+## Deployment Status
+
+This project is deployed on Vercel. Check out the live version at [basednet.vercel.app](https://basednet.vercel.app).
+
 ## Features
 
 - **Personal Websites**: Create and customize your own personal website with HTML, CSS, and JavaScript
