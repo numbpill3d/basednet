@@ -6,7 +6,7 @@
   "framework": "nextjs",
   "env": {
     "DATABASE_URL": "postgresql://user:password@host:5432/basednet",
-    "NEXTAUTH_URL": "https://your-domain.com",
+    "NEXTAUTH_URL": "https://basednet.vercel.app",
     "NEXTAUTH_SECRET": "@nextauth-secret",
     "INDIE_AUTH_CLIENT_ID": "@indie-auth-client-id",
     "INDIE_AUTH_CLIENT_SECRET": "@indie-auth-client-secret",
