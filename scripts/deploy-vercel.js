@@ -126,12 +126,20 @@ async function deployToVercel() {
             await runCommand('vercel --prod');
             
             console.log();
-            console.log('Deployment complete!');
+            console.log('🎉 Deployment complete!');
+            console.log();
+            console.log('Your application is now live! You can access it at:');
+            console.log('- The Vercel URL shown above in the deployment output');
+            console.log('- Your Vercel dashboard: https://vercel.com/dashboard');
+            console.log('  (Click on your project, then the "Visit" button)');
             console.log();
             console.log('Next steps:');
             console.log('1. Set up your custom domain in the Vercel dashboard');
             console.log('2. Configure any remaining environment variables');
-            console.log('3. Set up a database if you haven\'t already');
+            console.log('3. Verify all services are working correctly');
+            console.log();
+            console.log('For more information on accessing and verifying your deployment,');
+            console.log('see the "Accessing Your Deployed Application" section in DEPLOYMENT.md');
           } catch (error) {
             console.error('Error deploying to Vercel:', error);
           }

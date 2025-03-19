@@ -163,7 +163,26 @@ Alternatively, you can deploy manually:
 3. Wait for SSL certificate provisioning
 4. Update your `NEXTAUTH_URL` and `INDIE_AUTH_REDIRECT_URI` environment variables to use your custom domain
 
-## Step 6: Post-Deployment Verification
+## Step 6: Accessing Your Deployed Application
+
+After successful deployment, you can access your application in several ways:
+
+1. **Vercel Deployment URL**:
+   - At the end of the deployment process, Vercel will provide a URL where your application is accessible
+   - This URL typically follows the format: `https://your-project-name.vercel.app`
+   - The URL will be displayed in the terminal after deployment completes
+
+2. **Vercel Dashboard**:
+   - Log in to your Vercel dashboard: https://vercel.com/dashboard
+   - Select your project
+   - Click on the "Visit" button to open your deployed application
+   - You can also find deployment details, logs, and analytics here
+
+3. **Custom Domain** (if configured):
+   - If you set up a custom domain in Step 5, your application will be available at that domain
+   - For example: `https://yourdomain.com`
+
+## Step 7: Post-Deployment Verification
 
 After deployment, verify that everything is working correctly:
 

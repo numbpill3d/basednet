@@ -140,6 +140,10 @@ async function checkDeploymentReadiness() {
     console.log('1. Deploy to Vercel: npm run deploy');
     console.log('2. Set up your custom domain in the Vercel dashboard');
     console.log('3. Verify all services are working correctly after deployment');
+    console.log('\nAfter deployment:');
+    console.log('- Your site will be available at the Vercel URL (shown at the end of deployment)');
+    console.log('- You can also access it from your Vercel dashboard: https://vercel.com/dashboard');
+    console.log('- If you set up a custom domain, your site will be available at that domain');
     console.log('\nFor detailed deployment instructions, see DEPLOYMENT.md');
   } else {
     console.log('\n⚠️ Your BasedNet instance is NOT READY for deployment.');

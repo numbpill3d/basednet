@@ -165,6 +165,11 @@ async function setup() {
                   console.log('1. If you haven\'t deployed yet: npm run deploy');
                   console.log('2. Set up your custom domain in the Vercel dashboard');
                   console.log('3. Verify all services are working correctly');
+                  console.log();
+                  console.log('After deployment, you can access your application at:');
+                  console.log('- The Vercel URL shown in the deployment output');
+                  console.log('- Your Vercel dashboard: https://vercel.com/dashboard');
+                  console.log('- Your custom domain (if configured)');
                   
                   rl.close();
                 });

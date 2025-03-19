@@ -126,6 +126,15 @@ npm run deploy
 
 This script will guide you through the process of deploying to Vercel, including setting up environment variables and configuring your project.
 
+3. After deployment, access your application:
+
+```
+# Your application will be available at:
+- The Vercel URL shown in the deployment output (typically https://your-project-name.vercel.app)
+- Your Vercel dashboard: https://vercel.com/dashboard
+- Your custom domain (if configured)
+```
+
 For detailed deployment instructions, troubleshooting tips, and other deployment options, see [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Contributing
