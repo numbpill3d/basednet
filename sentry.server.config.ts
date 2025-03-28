@@ -6,14 +6,6 @@ Sentry.init({
   // Performance Monitoring
   tracesSampleRate: 0.1, // Capture 10% of transactions for performance monitoring
   
-  // Enable automatic instrumentation for Next.js
-  integrations: [
-    new Sentry.BrowserTracing({
-      // Set sampling rate for performance monitoring
-      tracePropagationTargets: ['localhost', /^https:\/\/[^/]*\.basednet\.com/],
-    }),
-  ],
-
   // Environment-specific configuration
   environment: process.env.NODE_ENV,
   

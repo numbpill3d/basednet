@@ -11,4 +11,13 @@ const sentryWebpackPluginOptions = {
   silent: true, // Suppresses all logs
 };
 
-module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
+// Configure Sentry options
+const sentryOptions = {
+  hideSourceMaps: true, // Hide source maps in production
+  widenClientFileUpload: true,
+  transpileClientSDK: true,
+  tunnelRoute: '/monitoring',
+  disableLogger: true,
+};
+
+module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions, sentryOptions);
