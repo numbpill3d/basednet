@@ -6,23 +6,17 @@
   "framework": "nextjs",
   "env": {
     "DATABASE_URL": "postgresql://user:password@host:5432/basednet",
-    "NEXTAUTH_URL": "https://basednet.vercel.app",
-    "NEXTAUTH_SECRET": "@nextauth-secret",
-    "INDIE_AUTH_CLIENT_ID": "@indie-auth-client-id",
-    "INDIE_AUTH_CLIENT_SECRET": "@indie-auth-client-secret",
-    "IPFS_PROJECT_ID": "@ipfs-project-id",
-    "IPFS_PROJECT_SECRET": "@ipfs-project-secret"
+    "NEXTAUTH_URL": "https://basednet.lol",
+    "NEXTAUTH_SECRET": "basednet-nextauth-secret-key-change-in-production",
+    "INDIE_AUTH_CLIENT_ID": "https://basednet.lol",
+    "INDIE_AUTH_CLIENT_SECRET": "a0cb2bbadb0befc7cedfe9f40a9355c52ad107dfdd628a7c009348de579fbb1a",
+    "IPFS_PROJECT_ID": "971d5aadc982cc62695b",
+    "IPFS_PROJECT_SECRET": "11ed2bf0f5a3ec55c8aa8a515b4851deb4489837cdabf4e67681e00ce38af265"
   },
   "build": {
     "env": {
       "NODE_ENV": "production"
     }
   },
-  "regions": ["iad1"],
-  "functions": {
-    "api/**/*.ts": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  }
+  "regions": ["iad1"]
 }
