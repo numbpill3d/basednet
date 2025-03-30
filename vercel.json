@@ -5,13 +5,16 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "env": {
-    "DATABASE_URL": "postgresql://user:password@host:5432/basednet",
+    "DATABASE_URL": "postgresql://neondb_owner:npg_loex42GnkyEf@ep-small-flower-a5hbgnie-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require",
     "NEXTAUTH_URL": "https://basednet.lol",
     "NEXTAUTH_SECRET": "basednet-nextauth-secret-key-change-in-production",
     "INDIE_AUTH_CLIENT_ID": "https://basednet.lol",
     "INDIE_AUTH_CLIENT_SECRET": "a0cb2bbadb0befc7cedfe9f40a9355c52ad107dfdd628a7c009348de579fbb1a",
     "IPFS_PROJECT_ID": "971d5aadc982cc62695b",
-    "IPFS_PROJECT_SECRET": "11ed2bf0f5a3ec55c8aa8a515b4851deb4489837cdabf4e67681e00ce38af265"
+    "IPFS_PROJECT_SECRET": "11ed2bf0f5a3ec55c8aa8a515b4851deb4489837cdabf4e67681e00ce38af265",
+    "SENTRY_ORG": "basednet",
+    "SENTRY_PROJECT": "basednet",
+    "SENTRY_DSN": "https://e8030cc6502f8f8391a6eefb8350b1f0@o4509050597605376.ingest.us.sentry.io/4509050617856000"
   },
   "build": {
     "env": {

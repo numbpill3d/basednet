@@ -46,7 +46,7 @@ pool.query('SELECT NOW()', (err: Error | null) => {
 });
 
 // Helper functions for common database operations
-export async function query<T = any>(
+export async function query<T extends Record<string, any> = any>(
   text: string,
   params?: any[]
 ): Promise<QueryResult<T>> {

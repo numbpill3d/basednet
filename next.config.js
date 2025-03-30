@@ -1,5 +1,3 @@
-const { withSentryConfig } = require('@sentry/nextjs');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -10,18 +8,5 @@ const nextConfig = {
   },
 };
 
-// Configure Sentry options
-const sentryOptions = {
-  hideSourceMaps: true, // Hide source maps in production
-  widenClientFileUpload: true,
-  transpileClientSDK: true,
-  tunnelRoute: '/monitoring',
-  disableLogger: true,
-};
-
-const sentryWebpackPluginOptions = {
-  silent: true, // Suppresses all logs
-};
-
-// Exporting the combined configuration
-module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions, sentryOptions);
+// Exporting the configuration without Sentry for now
+module.exports = nextConfig;

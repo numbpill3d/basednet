@@ -57,7 +57,7 @@ export class IpfsContentModel {
   static async delete(cid: string, userId: number): Promise<boolean> {
     const query = 'DELETE FROM ipfs_content WHERE cid = $1 AND user_id = $2 RETURNING id';
     const result = await pool.query(query, [cid, userId]);
-    return result.rowCount > 0;
+    return result.rowCount !== null && result.rowCount > 0;
   }
 
   static async getPinnedContent(limit = 100): Promise<IpfsContent[]> {
