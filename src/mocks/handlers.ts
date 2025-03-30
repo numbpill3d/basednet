@@ -1,8 +1,8 @@
-import { rest } from 'msw'
+import { http, HttpResponse } from 'msw'
 
 export const handlers = [
   // Auth endpoints
-  rest.post('/api/auth/signin', (req, res, ctx) => {
+  http.post('/api/auth/signin', () => {
     return res(
       ctx.status(200),
       ctx.json({

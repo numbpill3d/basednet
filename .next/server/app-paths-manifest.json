@@ -1,12 +1,12 @@
 {
   "/_not-found": "app/_not-found.js",
-  "/api/ipfs/route": "app/api/ipfs/route.js",
-  "/api/ipfs/[cid]/route": "app/api/ipfs/[cid]/route.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
   "/api/profile/route": "app/api/profile/route.js",
   "/api/users/[username]/route": "app/api/users/[username]/route.js",
   "/api/users/route": "app/api/users/route.js",
   "/page": "app/page.js",
+  "/api/ipfs/route": "app/api/ipfs/route.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/profile/page": "app/profile/page.js",
-  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js"
+  "/api/ipfs/[cid]/route": "app/api/ipfs/[cid]/route.js"
 }
