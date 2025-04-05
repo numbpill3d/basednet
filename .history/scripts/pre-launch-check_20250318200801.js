@@ -52,7 +52,8 @@ async function checkDatabase() {
   }
   
   try {
-    // Directly test database connection
+    // Create a simple test script to check database connection
+    const testScript = `
     const { Pool } = require('pg');
     require('dotenv').config();
     
@@ -64,7 +65,7 @@ async function checkDatabase() {
     async function testConnection() {
       try {
         const client = await pool.connect();
-        await client.query('SELECT NOW()');
+        const result = await client.query('SELECT NOW()');
         client.release();
         console.log('✅ Database connection successful');
         return true;
@@ -76,7 +77,29 @@ async function checkDatabase() {
       }
     }
     
-    return await testConnection();
+    testConnection();
+    `;
+    
+    const testScriptPath = path.join(__dirname, 'temp-db-test.js');
+    fs.writeFileSync(testScriptPath, testScript);
+    
+    try {
+      const { stdout } = await runCommand('node ' + testScriptPath);
+      console.log(stdout);
+      const success = stdout.includes('Database connection successful');
+      
+      // Clean up
+      fs.unlinkSync(testScriptPath);
+      
+      return success;
+    } catch (error) {
+      // Clean up
+      if (fs.existsSync(testScriptPath)) {
+        fs.unlinkSync(testScriptPath);
+      }
+      console.error('❌ Failed to test database connection:', error.message);
+      return false;
+    }
   } catch (error) {
     console.error('❌ Failed to check database:', error.message);
     return false;
