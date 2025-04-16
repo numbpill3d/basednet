@@ -147,14 +147,8 @@ export default function Home() {
           </div>
           <div className="window-content">
             <div className="address-bar">
-              <label htmlFor="active-sites-address">Address:</label>
-              <input 
-                id="active-sites-address"
-                type="text" 
-                value="C:\BASEDNET\ACTIVE_SITES.HTM" 
-                readOnly 
-                aria-label="Address bar for active sites"
-              />
+              <label>Address:</label>
+              <input type="text" value="C:\BASEDNET\ACTIVE_SITES.HTM" readOnly />
               <button className="btn-98 btn-small">Go</button>
             </div>
             
@@ -230,14 +224,8 @@ export default function Home() {
           </div>
           <div className="window-content">
             <div className="address-bar">
-              <label htmlFor="site-manager-location">Location:</label>
-              <input 
-                id="site-manager-location"
-                type="text" 
-                value="C:\BASEDNET\MY_SITE\\" 
-                readOnly 
-                aria-label="Location bar for site manager"
-              />
+              <label>Location:</label>
+              <input type="text" value="C:\BASEDNET\MY_SITE\" readOnly />
               <button className="btn-98 btn-small">Go</button>
             </div>
             
@@ -343,11 +331,7 @@ export default function Home() {
             
             <div style={{ marginTop: '10px' }}>
               <label style={{ display: 'block', marginBottom: '5px', fontSize: '11px' }}><b>Available Webrings:</b></label>
-              <select 
-                style={{ width: '100%' }} 
-                aria-label="Available Webrings" 
-                id="webring-select"
-              >
+              <select style={{ width: '100%' }}>
                 <option>Retro Web Webring</option>
                 <option>Pixel Art Community</option>
                 <option>Indie Developers Circle</option>

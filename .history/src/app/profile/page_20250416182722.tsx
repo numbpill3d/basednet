@@ -360,13 +360,13 @@ export default function ProfilePage() {
                         value={formData.custom_css} 
                         onChange={handleChange} 
                         style={{ width: '100%', height: '120px', fontFamily: 'monospace', fontSize: '12px' }}
-                        placeholder={`/* Your custom CSS here */
+                        placeholder="/* Your custom CSS here */
 body { 
   background-color: #000080; 
 }
 .my-class {
   color: yellow;
-}`}
+}"
                       />
                       <p style={{ fontSize: '10px', color: 'var(--win98-darker)', marginTop: '3px' }}>
                         Custom CSS will be applied to your personal website
@@ -383,11 +383,11 @@ body {
                         value={formData.custom_html} 
                         onChange={handleChange} 
                         style={{ width: '100%', height: '120px', fontFamily: 'monospace', fontSize: '12px' }}
-                        placeholder={`<!-- Your custom HTML here -->
-<div class="my-section">
+                        placeholder="<!-- Your custom HTML here -->
+<div class=\"my-section\">
   <h1>Welcome to my site!</h1>
   <p>This is my custom content.</p>
-</div>`}
+</div>"
                       />
                       <p style={{ fontSize: '10px', color: 'var(--win98-darker)', marginTop: '3px' }}>
                         Custom HTML that will be injected into your personal website
