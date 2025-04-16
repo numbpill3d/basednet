@@ -17,12 +17,10 @@
     "setup:auth": "node scripts/setup-indieauth.js",
     "setup:ipfs": "node scripts/setup-ipfs.js",
     "setup:monitoring": "node scripts/setup-monitoring.js",
-    "setup:github": "node scripts/setup-github-deploy.js",
     "check:env": "node scripts/check-env.js",
     "check:launch": "node scripts/pre-launch-check.js",
     "check:deployment": "node scripts/deployment-ready.js",
     "deploy": "node scripts/deploy-vercel.js",
-    "deploy:github": "git push origin main",
     "security:audit": "npm audit && npx snyk test",
     "prepare": "husky install"
   },
