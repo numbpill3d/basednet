@@ -18,7 +18,6 @@
     "setup:ipfs": "node scripts/setup-ipfs.js",
     "setup:monitoring": "node scripts/setup-monitoring.js",
     "setup:github": "node scripts/setup-github-deploy.js",
-    "setup:github:fixed": "node scripts/setup-github-deploy-fixed.js",
     "setup:github:finalize": "node scripts/finalize-deployment-setup.js",
     "check:env": "node scripts/check-env.js",
     "check:launch": "node scripts/pre-launch-check.js",
