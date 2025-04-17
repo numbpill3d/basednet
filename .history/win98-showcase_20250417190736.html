@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BasedNet - Windows 98 Style</title>
+    <style>
+        /* Windows 98/Retrowave Theme */
+        :root {
+          --win98-gray: #c0c0c0;
+          --win98-dark: #808080;
+          --win98-darker: #404040;
+          --win98-light: #dfdfdf;
+          --win98-blue: #000080;
+          --win98-blue-light: #1084d0;
+          --win98-green: #008080;
+          --win98-desktop: #008080;
+          --win98-title-active: linear-gradient(90deg, #000080, #1084d0);
+          --win98-title-inactive: linear-gradient(90deg, #808080, #c0c0c0);
+          --retrowave-pink: #ff00ff;
+          --retrowave-blue: #00ffff;
+          --retrowave-purple: #9900ff;
+          --pixel-ratio: 1px;
+        }
+
+        /* Global Reset with retro font */
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        body {
+          background-color: var(--win98-desktop);
+          font-family: "MS Sans Serif", Arial, sans-serif;
+          color: var(--win98-darker);
+          text-shadow: 1px 1px var(--win98-light);
+          line-height: 1.4;
+          font-size: 11px;
+          image-rendering: pixelated;
+        }
+
+        /* Windows 98 Window Styling with improved borders */
+        .window {
+          background: var(--win98-gray);
+          border: var(--pixel-ratio) solid;
+          border-color: var(--win98-light) var(--win98-darker) var(--win98-darker) var(--win98-light);
+          box-shadow: var(--pixel-ratio) var(--pixel-ratio) 0 0 var(--win98-dark);
+          padding: 2px;
+          margin: 16px;
+          position: relative;
+        }
+
+        .window::before {
+          content: '';
+          position: absolute;
+          top: 1px;
+          left: 1px;
+          right: 1px;
+          bottom: 1px;
+          border: var(--pixel-ratio) solid;
+          border-color: white var(--win98-dark) var(--win98-dark) white;
+          pointer-events: none;
+        }
+
+        .window-title {
+          background: var(--win98-blue);
+          background-image: var(--win98-title-active);
+          color: white;
+          font-weight: bold;
+          padding: 3px 5px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 11px;
+          letter-spacing: 0px;
+          text-shadow: 1px 1px 0px rgba(0,0,0,0.7);
+        }
+
+        .window-title .title-text {
+          display: flex;
+          align-items: center;
+        }
+
+        .window-title .title-text img {
+          margin-right: 4px;
+          width: 16px;
+          height: 16px;
+        }
+
+        .window-inactive .window-title {
+          background: var(--win98-dark);
+          background-image: var(--win98-title-inactive);
+          color: var(--win98-light);
+          text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
+        }
+
+        .window-controls {
+          display: flex;
+        }
+
+        .window-control {
+          width: 16px;
+          height: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-left: 2px;
+          background: var(--win98-gray);
+          border: 1px solid;
+          border-color: var(--win98-light) var(--win98-darker) var(--win98-darker) var(--win98-light);
+          box-shadow: 1px 1px 0 0 white inset, -1px -1px 0 0 var(--win98-dark) inset;
+          font-size: 9px;
+          font-family: "Arial", sans-serif;
+          font-weight: bold;
+          color: black;
+          cursor: pointer;
+          line-height: 1;
+        }
+
+        .window-control:active {
+          border-color: var(--win98-darker) var(--win98-light) var(--win98-light) var(--win98-darker);
+          box-shadow: -1px -1px 0 0 white inset, 1px 1px 0 0 var(--win98-dark) inset;
+        }
+
+        .window-content {
+          padding: 10px;
+          background: var(--win98-gray);
+          font-size: 11px;
+        }
+
+        /* Improved Retro Buttons */
+        .btn-98 {
+          background: var(--win98-gray);
+          border: 1px solid;
+          border-color: var(--win98-light) var(--win98-darker) var(--win98-darker) var(--win98-light);
+          box-shadow: 1px 1px 0 0 white inset, -1px -1px 0 0 var(--win98-dark) inset;
+          padding: 4px 10px;
+          font-family: inherit;
+          font-size: 11px;
+          font-weight: normal;
+          color: black;
+          cursor: pointer;
+          margin: 4px;
+          position: relative;
+          display: inline-block;
+          text-shadow: none;
+          text-decoration: none;
+        }
+
+        .btn-98:active, .btn-98.active {
+          border-color: var(--win98-darker) var(--win98-light) var(--win98-light) var(--win98-darker);
+          box-shadow: -1px -1px 0 0 white inset, 1px 1px 0 0 var(--win98-dark) inset;
+          padding: 5px 9px 3px 11px;
+        }
+
+        .btn-98:focus {
+          outline: 1px dotted black;
+          outline-offset: -5px;
+        }
+
+        /* Navigation Bar - Enhanced with cleaner design */
+        .navbar-98 {
+          background: var(--win98-gray);
+          border-bottom: 2px solid var(--win98-darker);
+          padding: 2px;
+          display: flex;
+          align-items: center;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          box-shadow: 0 1px 0 0 white inset, 0 -1px 0 0 var(--win98-dark) inset;
+        }
+
+        /* Start button styling */
+        .start-button {
+          display: flex;
+          align-items: center;
+          margin-right: 4px;
+          font-weight: bold;
+        }
+
+        .start-button img {
+          margin-right: 3px;
+          width: 16px;
+          height: 16px;
+        }
+
+        .separator-98 {
+          height: 2px;
+          background: var(--win98-darker);
+          border-bottom: 1px solid var(--win98-light);
+          margin: 3px 0;
+        }
+
+        /* Grid Layout */
+        .grid-98 {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 16px;
+          padding: 16px;
+        }
+
+        /* Desktop Items */
+        .desktop-icon {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 10px;
+          width: 70px;
+          cursor: pointer;
+          text-align: center;
+        }
+
+        .desktop-icon img {
+          width: 32px;
+          height: 32px;
+          margin-bottom: 5px;
+        }
+
+        .desktop-icon-label {
+          color: white;
+          text-shadow: 1px 1px black;
+          font-size: 10px;
+        }
+
+        .desktop-icon:hover .desktop-icon-label {
+          background: var(--win98-blue);
+        }
+
+        /* ASCII Art Styling */
+        .ascii-art {
+          font-family: "Courier New", monospace;
+          white-space: pre;
+          font-size: 12px;
+          line-height: 1.2;
+          color: var(--win98-darker);
+          margin: 10px 0;
+          -webkit-font-smoothing: none;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Retrowave Accents */
+        .retrowave-glow {
+          -webkit-animation: neon 1.5s ease-in-out infinite alternate;
+          animation: neon 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes neon {
+          from {
+            text-shadow: 
+              0 0 5px var(--retrowave-pink),
+              0 0 10px var(--retrowave-blue),
+              0 0 15px var(--retrowave-purple);
+          }
+          to {
+            text-shadow: 
+              0 0 2px var(--retrowave-pink),
+              0 0 5px var(--retrowave-blue),
+              0 0 7px var(--retrowave-purple);
+          }
+        }
+
+        /* Status Bar Enhancements */
+        .status-bar-98 {
+          background: var(--win98-gray);
+          border-top: 2px solid;
+          border-color: var(--win98-dark) var(--win98-light) var(--win98-light) var(--win98-dark);
+          padding: 2px 4px;
+          display: flex;
+          justify-content: space-between;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          z-index: 1000;
+          height: 28px;
+          box-shadow: 0 -1px 0 0 var(--win98-darker);
+          font-size: 11px;
+        }
+
+        .status-item {
+          height: 22px;
+          border: 1px solid;
+          border-color: var(--win98-darker) var(--win98-light) var(--win98-light) var(--win98-darker);
+          padding: 2px 4px;
+          margin-right: 4px;
+          display: flex;
+          align-items: center;
+          background: var(--win98-gray);
+        }
+
+        .system-tray {
+          display: flex;
+          margin-left: auto;
+        }
+
+        .tray-icon {
+          margin: 0 2px;
+          padding: 2px;
+        }
+
+        .win98-clock {
+          padding: 2px 5px;
+          font-size: 10px;
+          border-left: 1px solid var(--win98-dark);
+          margin-left: 4px;
+          display: flex;
+          align-items: center;
+        }
+
+        /* Table Styling */
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        th, td {
+          border: 1px solid var(--win98-darker);
+          padding: 4px 8px;
+          text-align: left;
+          font-size: 11px;
+        }
+
+        th {
+          background: var(--win98-blue);
+          color: white;
+          text-shadow: 1px 1px 0px rgba(0,0,0,0.7);
+          font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+          background-color: #d4d0c8;
+        }
+
+        .win98-desktop {
+          min-height: 100vh;
+          padding-bottom: 30px; /* Space for status bar */
+          background-color: var(--win98-desktop);
+          background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAE5JREFUeNrswTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAB3KAAbyb9J8UAAAAASUVORK5CYII=");
+          background-size: 100px 100px;
+          background-attachment: fixed;
+          position: relative;
+        }
+
+        /* Tabs */
+        .tabs-98 {
+          display: flex;
+          margin-bottom: -1px;
+        }
+
+        .tab-98 {
+          padding: 3px 8px;
+          border: 1px solid var(--win98-darker);
+          background: var(--win98-gray);
+          margin-right: 2px;
+          cursor: pointer;
+          position: relative;
+          font-size: 11px;
+        }
+
+        .tab-98.active {
+          background: white;
+          border-bottom: 1px solid white;
+        }
+
+        .tab-content-98 {
+          border: 1px solid var(--win98-darker);
+          padding: 10px;
+          background: white;
+        }
+
+        /* Alert and notifications */
+        .alert-98 {
+          border: 1px solid var(--win98-darker);
+          padding: 10px;
+          margin: 10px 0;
+          display: flex;
+          align-items: flex-start;
+        }
+
+        .alert-98-content {
+          flex: 1;
+        }
+
+        .win98-error {
+          background-color: #ffdddd;
+          border: 1px solid #f00;
+          padding: 8px;
+          margin: 8px 0;
+          display: flex;
+          align-items: flex-start;
+        }
+
+        .win98-success {
+          background-color: #ddffdd;
+          border: 1px solid #00c000;
+          padding: 8px;
+          margin: 8px 0;
+          display: flex;
+          align-items: flex-start;
+        }
+
+        .pixel-art {
+          image-rendering: pixelated;
+          image-rendering: -moz-crisp-edges;
+          image-rendering: -webkit-optimize-contrast;
+        }
+
+        /* Loading Animation */
+        .loading-98 {
+          border: 2px solid var(--win98-darker);
+          border-top: 2px solid var(--win98-blue);
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          -webkit-animation: spin-98 1s linear infinite;
+          animation: spin-98 1s linear infinite;
+          box-shadow: 0 0 5px var(--retrowave-blue);
+        }
+
+        @keyframes spin-98 {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="win98-desktop">
+        <!-- Desktop Icons -->
+        <div style="padding: 10px; display: flex; flex-wrap: wrap;">
+            <div class="desktop-icon">
+                <div class="pixel-art" style="font-size: 32px;">🌐</div>
+                <div class="desktop-icon-label">My Website</div>
+            </div>
+            <div class="desktop-icon">
+                <div class="pixel-art" style="font-size: 32px;">📝</div>
+                <div class="desktop-icon-label">Create Site</div>
+            </div>
+            <div class="desktop-icon">
+                <div class="pixel-art" style="font-size: 32px;">⭕</div>
+                <div class="desktop-icon-label">Webrings</div>
+            </div>
+            <div class="desktop-icon">
+                <div class="pixel-art" style="font-size: 32px;">❓</div>
+                <div class="desktop-icon-label">Help</div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="navbar-98">
+            <div class="start-button btn-98">
+                <span class="pixel-art">🪟</span> Start
+            </div>
+            
+            <div class="separator-98" style="height: 22px; width: 1px; margin: 0 4px;"></div>
+            
+            <!-- Quick launch icons -->
+            <a href="#" class="btn-98" title="Home">
+                <span class="pixel-art">🏠</span>
+            </a>
+            <a href="#" class="btn-98" title="Browse">
+                <span class="pixel-art">🌐</span>
+            </a>
+            <a href="#" class="btn-98" title="Webrings">
+                <span class="pixel-art">⭕</span>
+            </a>
+            
+            <div style="flex: 1;"></div>
+            
+            <!-- System tray -->
+            <div class="system-tray">
+                <div class="tray-icon" title="Connected to IPFS Network">
+                    <span class="pixel-art">📡</span>
+                </div>
+                <div class="win98-clock">
+                    12:34 PM
+                </div>
+            </div>
+        </div>
+
+        <!-- ASCII Art Logo Window -->
+        <div class="window" style="max-width: 600px; margin: 20px auto;">
+            <div class="window-title">
+                <div class="title-text">
+                    <span class="pixel-art" style="margin-right: 5px;">📟</span>
+                    BASEDNET.EXE
+                </div>
+                <div class="window-controls">
+                    <div class="window-control">_</div>
+                    <div class="window-control">□</div>
+                    <div class="window-control">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <pre class="ascii-art retrowave-glow">
+ ▄▄▄▄    ▄▄▄        ██████ ▓█████ ▓█████▄  ███▄    █ ▓█████▄▄▄█████▓
+▓█████▄ ▒████▄    ▒██    ▒ ▓█   ▀ ▒██▀ ██▌ ██ ▀█   █ ▓█   ▀▓  ██▒ ▓▒
+▒██▒ ▄██▒██  ▀█▄  ░ ▓██▄   ▒███   ░██   █▌▓██  ▀█ ██▒▒███  ▒ ▓██░ ▒░
+▒██░█▀  ░██▄▄▄▄██   ▒   ██▒▒▓█  ▄ ░▓█▄   ▌▓██▒  ▐▌██▒▒▓█  ▄░ ▓██▓ ░ 
+░▓█  ▀█▓ ▓█   ▓██▒▒██████▒▒░▒████▒░▒████▓ ▒██░   ▓██░░▒████▒ ▒██▒ ░ 
+░▒▓███▀▒ ▒▒   ▓▒█░▒ ▒▓▒ ▒ ░░░ ▒░ ░ ▒▒▓  ▒ ░ ▒░   ▒ ▒ ░░ ▒░ ░ ▒ ░░   
+▒░▒   ░   ▒   ▒▒ ░░ ░▒  ░ ░ ░ ░  ░ ░ ▒  ▒ ░ ░░   ░ ▒░ ░ ░  ░   ░    
+ ░    ░   ░   ▒   ░  ░  ░     ░    ░ ░  ░    ░   ░ ░    ░    ░      
+ ░            ░  ░      ░     ░  ░   ░             ░    ░  ░         
+      ░                            ░                                   
+                </pre>
+                <div class="alert-98">
+                    <div class="pixel-art" style="font-size: 32px; margin-right: 10px;">💾</div>
+                    <div class="alert-98-content">
+                        <p style="margin-bottom: 5px;"><b>Web 1.0 Lives Forever</b></p>
+                        <p>Create, host, and share your personal website with BasedNet</p>
+                    </div>
+                </div>
+            </div>
+            <div style="border-top: 1px solid var(--win98-darker); padding: 5px 10px; font-size: 10px; color: var(--win98-darker);">
+                System: Ready | Memory: 640K OK | 04/17/2025 12:34 PM
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid-98">
+            <!-- Active Sites Window -->
+            <div class="window">
+                <div class="window-title">
+                    <div class="title-text">
+                        <span class="pixel-art" style="margin-right: 5px;">🌐</span>
+                        Active Sites
+                    </div>
+                    <div class="window-controls">
+                        <div class="window-control">_</div>
+                        <div class="window-control">□</div>
+                        <div class="window-control">×</div>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <div style="display: flex; align-items: center; background: white; border: 1px solid var(--win98-darker); padding: 3px; margin-bottom: 10px;">
+                        <label for="active-sites-address" style="margin-right: 5px;">Address:</label>
+                        <input
+                          id="active-sites-address"
+                          type="text"
+                          value="C:\BASEDNET\ACTIVE_SITES.HTM"
+                          style="flex: 1; border: 1px solid var(--win98-darker);"
+                          readonly
+                          aria-label="Address bar for active sites"
+                          title="Address bar showing current location"
+                        >
+                        <button class="btn-98 btn-small" style="margin-left: 5px;">Go</button>
+                    </div>
+                    
+                    <div class="tabs-98">
+                        <div class="tab-98 active">Sites</div>
+                        <div class="tab-98">Details</div>
+                        <div class="tab-98">Preview</div>
+                    </div>
+                    <div class="tab-content-98">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 20px;"></th>
+                                    <th>Site</th>
+                                    <th>Last Updated</th>
+                                    <th>Views</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="pixel-art">📄</span></td>
+                                    <td><a href="#">cool-site-88</a></td>
+                                    <td>2 hours ago</td>
+                                    <td>1,337</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="pixel-art">📄</span></td>
+                                    <td><a href="#">retro-haven</a></td>
+                                    <td>5 hours ago</td>
+                                    <td>420</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="pixel-art">📄</span></td>
+                                    <td><a href="#">pixel-dreams</a></td>
+                                    <td>8 hours ago</td>
+                                    <td>808</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <button class="btn-98">Refresh</button>
+                        <button class="btn-98">View Site</button>
+                        <button class="btn-98">Properties</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Manager -->
+            <div class="window">
+                <div class="window-title">
+                    <div class="title-text">
+                        <span class="pixel-art" style="margin-right: 5px;">📂</span>
+                        Site Manager
+                    </div>
+                    <div class="window-controls">
+                        <div class="window-control">_</div>
+                        <div class="window-control">□</div>
+                        <div class="window-control">×</div>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <div style="display: flex; align-items: center; background: white; border: 1px solid var(--win98-darker); padding: 3px; margin-bottom: 10px;">
+                        <label for="site-manager-location" style="margin-right: 5px;">Location:</label>
+                        <input
+                          id="site-manager-location"
+                          type="text"
+                          value="C:\BASEDNET\MY_SITE\"
+                          style="flex: 1; border: 1px solid var(--win98-darker);"
+                          readonly
+                          aria-label="Location bar for site manager"
+                          title="File location path"
+                        >
+                        <button class="btn-98 btn-small" style="margin-left: 5px;">Go</button>
+                    </div>
+                    
+                    <div style="display: flex; margin-bottom: 10px; border-bottom: 1px solid var(--win98-darker); padding-bottom: 5px;">
+                        <button class="btn-98">
+                            <span class="pixel-art" style="margin-right: 3px;">📤</span> Upload
+                        </button>
+                        <button class="btn-98">
+                            <span class="pixel-art" style="margin-right: 3px;">📁</span> New Folder
+                        </button>
+                        <button class="btn-98">
+                            <span class="pixel-art" style="margin-right: 3px;">📝</span> Edit
+                        </button>
+                    </div>
+                    
+                    <div style="border: 1px solid var(--win98-darker); background: white; padding: 2px; min-height: 120px;">
+                        <div style="display: inline-flex; flex-direction: column; align-items: center; margin: 5px; width: 70px; text-align: center;">
+                            <span class="pixel-art" style="font-size: 32px;">📁</span>
+                            <span>images</span>
+                        </div>
+                        <div style="display: inline-flex; flex-direction: column; align-items: center; margin: 5px; width: 70px; text-align: center;">
+                            <span class="pixel-art" style="font-size: 32px;">📄</span>
+                            <span>index.html</span>
+                        </div>
+                        <div style="display: inline-flex; flex-direction: column; align-items: center; margin: 5px; width: 70px; text-align: center;">
+                            <span class="pixel-art" style="font-size: 32px;">📄</span>
+                            <span>style.css</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar-98">
+            <div class="status-item">
+                <span class="pixel-art" style="margin-right: 5px;">📡</span>
+                Connected to IPFS Network
+            </div>
+            <div class="status-item">
+                <span class="loading-98" style="width: 12px; height: 12px; margin-right: 5px;"></span>
+                Syncing with 404 peers
+            </div>
+            <div style="position: absolute; bottom: 5px; right: 5px; color: white; text-shadow: 1px 1px black; font-size: 9px; opacity: 0.7;">
+                BasedNet v1.0 | Memory Available: 640K | CPU: 133MHz
+            </div>
+        </div>
+    </div>
+</body>
+</html>
