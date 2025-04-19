@@ -24,7 +24,8 @@
     "check:deployment": "node scripts/deployment-ready.js",
     "deploy": "node scripts/deploy-vercel.js",
     "deploy:github": "git push origin main",
-    "security:audit": "npm audit && npx snyk test"
+    "security:audit": "npm audit && npx snyk test",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@sentry/nextjs": "^7.120.3",
