@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import React from 'react'
 import { Inter, Roboto_Mono } from 'next/font/google'
 import './globals.css'
-import './win98.css'
+import './nekoweb.css'
 import Providers from '@/components/Providers'
 
 const inter = Inter({

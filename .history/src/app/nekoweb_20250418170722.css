@@ -1,0 +1,65 @@
+/* Nekoweb Style */
+
+:root {
+  --nekoweb-background: #f8f0e3;
+  --nekoweb-text: #333;
+  --nekoweb-accent: #e6b8af;
+  --nekoweb-button-bg: #e6b8af;
+  --nekoweb-button-hover: #e0a89a;
+  --nekoweb-border: #ddd;
+}
+
+body {
+  background-color: var(--nekoweb-background);
+  font-family: sans-serif;
+  color: var(--nekoweb-text);
+  line-height: 1.6;
+}
+
+.nekoweb-button {
+  background-color: var(--nekoweb-button-bg);
+  color: var(--nekoweb-text);
+  border: 1px solid var(--nekoweb-border);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.nekoweb-button:hover {
+  background-color: var(--nekoweb-button-hover);
+}
+
+.nekoweb-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid var(--nekoweb-border);
+  border-radius: 5px;
+  background-color: white;
+}
+
+.nekoweb-section {
+  margin-bottom: 20px;
+}
+
+.nekoweb-section h2 {
+  margin-top: 0;
+}
+
+.nekoweb-section p {
+  margin-bottom: 10px;
+}
+
+.nekoweb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.nekoweb-grid-item {
+  border: 1px solid var(--nekoweb-border);
+  padding: 10px;
+  border-radius: 5px;
+}

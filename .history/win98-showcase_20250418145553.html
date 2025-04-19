@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BasedNet - Windows 98 Style</title>
+    <style>
+        /* Windows 98/Retrowave Theme */
+        :root {
+          --win98-gray: #c0c0c0;
+          --win98-dark: #808080;
+          --win98-darker: #404040;
+          --win98-light: #dfdfdf;
+          --win98-blue: #000080;
+          --win98-blue-light: #1084d0;
+          --win98-green: #008080;
+          --win98-desktop: #008080;
+          --win98-title-active: linear-gradient(90deg, #000080, #1084d0);
+          --win98-title-inactive: linear-gradient(90deg, #808080, #c0c0c0);
+          --retrowave-pink: #ff00ff;
+          --retrowave-blue: #00ffff;
+          --retrowave-purple: #9900ff;
+          --pixel-ratio: 1px;
+        }
+
+        /* Global Reset with retro font */
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        body {
+          background-color: var(--win98-desktop);
+          font-family: "MS Sans Serif", Arial, sans-serif;
+          color: var(--win98-darker);
+          text-shadow: 1px 1px var(--win98-light);
+          line-height: 1.4;
+          font-size: 11px;
+          image-rendering: pixelated;
+          overflow: hidden; /* Prevent scrolling */
+          height: 100vh;
+        }
+
+        /* Windows 98 Window Styling with improved borders */
+        .window {
+          background: var(--win98-gray);
+          border: var(--pixel-ratio) solid;
+          border-color: var(--win98-light) var(--win98-darker) var(--win98-darker) var(--win98-light);
+          box-shadow: var(--pixel-ratio) var(--pixel-ratio) 0 0 var(--win98-dark);
+          padding: 2px;
+          margin: 16px;
+          position: absolute;
+          resize: both;
+          overflow: auto;
+          min-width: 200px;
+          min-height: 150px;
+          max-width: 90vw;
+          max-height: 80vh;
+          z-index: 10;
+        }
+
+        .window::before {
+          content: '';
+          position: absolute;
+          top: 1px;
+          left: 1px;
+          right: 1px;
+          bottom: 1px;
+          border: var(--pixel-ratio) solid;
+          border-color: white var(--win98-dark) var(--win98-dark) white;
+          pointer-events: none;
+        }
+
+        .window-title {
+          background: var(--win98-blue);
+          background-image: var(--win98-title-active);
+          color: white;
+          font-weight: bold;
+          padding: 3px 5px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 11px;
+          letter-spacing: 0px;
+          text-shadow: 1px 1px 0px rgba(0,0,0,0.7);
+          cursor: move;
+        }
+
+        .window-title .title-text {
+          display: flex;
+          align-items: center;
+        }
+
+        .window-title .title-text img {
+          margin-right: 4px;
+          width: 16px;
+          height: 16px;
+        }
+
+        .window-inactive .window-title {
+          background: var(--win98-dark);
+          background-image: var(--win98-title-inactive);
+          color: var(--win98-light);
+          text-shadow: 1px 1px 0px rgba(0,0,0,0.3);
+        }
+
+        .window-controls {
+          display: flex;
+        }
+
+        .window-control {
+          width: 16px;
+          height: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-left: 2px;
+          background: var(--win98-gray);
+          border: 1px solid;
+          border-color: var(--win98-light) var(--win98-darker) var(--win98-darker) var(--win98-light);
+          box-shadow: 1px 1px 0 0 white inset, -1px -1px 0 0 var(--win98-dark) inset;
+          font-size: 9px;
+          font-family: "Arial", sans-serif;
+          font-weight: bold;
+          color: black;
+          cursor: pointer;
+          line-height: 1;
+        }
+
+        .window-control:active {
+          border-color: var(--win98-darker) var(--win98-light) var(--win98-light) var(--win98-darker);
+          box-shadow: -1px -1px 0 0 white inset, 1px 1px 0 0 var(--win98-dark) inset;
+        }
+
+        .window-content {
+          padding: 10px;
+          background: var(--win98-gray);
+          font-size: 11px;
+          overflow: auto;
+          position: absolute;
+          top: 20px;
+          left: 0;
+          right: 0;
+          bottom: 0;
+        }
+
+        /* Improved Retro Buttons */
+        .btn-98 {
+          background: var(--win98-gray);
+          border: 1px solid;
+          border-color: var(--win98-light) var(--win98-darker) var(--win98-darker) var(--win98-light);
+          box-shadow: 1px 1px 0 0 white inset, -1px -1px 0 0 var(--win98-dark) inset;
+          padding: 4px 10px;
+          font-family: inherit;
+          font-size: 11px;
+          font-weight: normal;
+          color: black;
+          cursor: pointer;
+          margin: 4px;
+          position: relative;
+          display: inline-block;
+          text-shadow: none;
+          text-decoration: none;
+        }
+
+        .btn-98:active, .btn-98.active {
+          border-color: var(--win98-darker) var(--win98-light) var(--win98-light) var(--win98-darker);
+          box-shadow: -1px -1px 0 0 white inset, 1px 1px 0 0 var(--win98-dark) inset;
+          padding: 5px 9px 3px 11px;
+        }
+
+        .btn-98:focus {
+          outline: 1px dotted black;
+          outline-offset: -5px;
+        }
+
+        /* Navigation Bar - Enhanced with cleaner design */
+        .navbar-98 {
+          background: var(--win98-gray);
+          border-top: 2px solid var(--win98-light);
+          padding: 2px;
+          display: flex;
+          align-items: center;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          z-index: 1000;
+          height: 30px;
+          box-shadow: 0 -1px 0 0 var(--win98-darker);
+        }
+
+        /* Start button styling */
+        .start-button {
+          display: flex;
+          align-items: center;
+          margin-right: 4px;
+          font-weight: bold;
+        }
+
+        /* Start menu */
+        .start-menu {
+          position: fixed;
+          bottom: 30px;
+          left: 0;
+          width: 200px;
+          background: var(--win98-gray);
+          border: 1px solid;
+          border-color: var(--win98-light) var(--win98-darker) var(--win98-darker) var(--win98-light);
+          box-shadow: 1px 1px 0 0 white inset, -1px -1px 0 0 var(--win98-dark) inset;
+          z-index: 2000;
+          display: none;
+        }
+
+        .start-menu.active {
+          display: block;
+          animation: slideUp 0.2s ease-out;
+        }
+
+        @keyframes slideUp {
+          from {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        .start-menu-sidebar {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 25px;
+          background: var(--win98-blue);
+          background-image: linear-gradient(to bottom, var(--win98-blue), var(--win98-blue-light));
+          writing-mode: vertical-lr;
+          transform: rotate(180deg);
+          color: white;
+          font-weight: bold;
+          text-align: center;
+          padding: 5px 0;
+          text-shadow: 1px 1px 0px rgba(0,0,0,0.7);
+        }
+
+        .start-menu-items {
+          margin-left: 26px;
+          padding: 2px;
+        }
+
+        .start-menu-item {
+          display: flex;
+          align-items: center;
+          padding: 4px 5px;
+          cursor: pointer;
+          text-decoration: none;
+          color: black;
+        }
+
+        .start-menu-item:hover {
+          background: var(--win98-blue);
+          color: white;
+        }
+
+        .start-menu-item span {
+          margin-right: 5px;
+        }
+
+        .separator-98 {
+          height: 2px;
+          background: var(--win98-darker);
+          border-bottom: 1px solid var(--win98-light);
+          margin: 3px 0;
+        }
+
+        /* Desktop Items */
+        .desktop-icons {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          display: grid;
+          grid-template-columns: repeat(auto-fill, 70px);
+          grid-gap: 20px;
+          z-index: 1;
+        }
+
+        .desktop-icon {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 70px;
+          cursor: pointer;
+          text-align: center;
+        }
+
+        .desktop-icon-img {
+          font-size: 32px;
+          margin-bottom: 5px;
+          image-rendering: -webkit-optimize-contrast;
+        }
+
+        .desktop-icon-label {
+          color: white;
+          text-shadow: 1px 1px black;
+          font-size: 10px;
+          background: transparent;
+          padding: 2px;
+        }
+
+        .desktop-icon:hover .desktop-icon-label {
+          background: var(--win98-blue);
+        }
+
+        /* ASCII Art Styling */
+        .ascii-art {
+          font-family: "Courier New", monospace;
+          white-space: pre;
+          font-size: 12px;
+          line-height: 1.2;
+          color: var(--win98-darker);
+          margin: 10px 0;
+          -webkit-font-smoothing: none;
+        }
+
+        /* Retrowave Accents */
+        .retrowave-glow {
+          -webkit-animation: neon 1.5s ease-in-out infinite alternate;
+          animation: neon 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes neon {
+          from {
+            text-shadow: 
+              0 0 5px var(--retrowave-pink),
+              0 0 10px var(--retrowave-blue),
+              0 0 15px var(--retrowave-purple);
+          }
+          to {
+            text-shadow: 
+              0 0 2px var(--retrowave-pink),
+              0 0 5px var(--retrowave-blue),
+              0 0 7px var(--retrowave-purple);
+          }
+        }
+
+        /* Tabs */
+        .tabs-98 {
+          display: flex;
+          margin-bottom: -1px;
+        }
+
+        .tab-98 {
+          padding: 3px 8px;
+          border: 1px solid var(--win98-darker);
+          background: var(--win98-gray);
+          margin-right: 2px;
+          cursor: pointer;
+          position: relative;
+          font-size: 11px;
+        }
+
+        .tab-98.active {
+          background: white;
+          border-bottom: 1px solid white;
+        }
+
+        .tab-content-98 {
+          border: 1px solid var(--win98-darker);
+          padding: 10px;
+          background: white;
+        }
+
+        /* Alert and notifications */
+        .alert-98 {
+          border: 1px solid var(--win98-darker);
+          padding: 10px;
+          margin: 10px 0;
+          display: flex;
+          align-items: flex-start;
+        }
+
+        .alert-98-content {
+          flex: 1;
+        }
+
+        /* Table Styling */
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        th, td {
+          border: 1px solid var(--win98-darker);
+          padding: 4px 8px;
+          text-align: left;
+          font-size: 11px;
+        }
+
+        th {
+          background: var(--win98-blue);
+          color: white;
+          text-shadow: 1px 1px 0px rgba(0,0,0,0.7);
+          font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+          background-color: #d4d0c8;
+        }
+
+        /* Loading Animation */
+        .loading-98 {
+          border: 2px solid var(--win98-darker);
+          border-top: 2px solid var(--win98-blue);
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          -webkit-animation: spin-98 1s linear infinite;
+          animation: spin-98 1s linear infinite;
+          box-shadow: 0 0 5px var(--retrowave-blue);
+        }
+
+        @keyframes spin-98 {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        /* Taskbar buttons */
+        .taskbar-button {
+          height: 22px;
+          border: 1px solid;
+          border-color: var(--win98-light) var(--win98-darker) var(--win98-darker) var(--win98-light);
+          margin-right: 3px;
+          padding: 1px 5px;
+          display: flex;
+          align-items: center;
+          font-size: 11px;
+          min-width: 120px;
+          max-width: 150px;
+          background: var(--win98-gray);
+        }
+
+        .taskbar-button.active {
+          border-color: var(--win98-darker) var(--win98-light) var(--win98-light) var(--win98-darker);
+          background: var(--win98-gray);
+        }
+
+        .taskbar-icon {
+          margin-right: 4px;
+          font-size: 16px;
+        }
+
+        /* System tray */
+        .system-tray {
+          display: flex;
+          align-items: center;
+          margin-left: auto;
+          padding: 0 5px;
+          border-left: 1px solid var(--win98-darker);
+        }
+
+        .tray-icon {
+          margin: 0 3px;
+          font-size: 16px;
+        }
+
+        .win98-clock {
+          padding: 2px 5px;
+          font-size: 11px;
+          margin-left: 4px;
+        }
+
+        /* Address bar */
+        .address-bar {
+          display: flex;
+          align-items: center;
+          padding: 3px;
+          margin: 5px 0;
+          background: white;
+          border: 1px solid var(--win98-darker);
+        }
+
+        .folder-view {
+          border: 1px solid var(--win98-darker);
+          background: white;
+          padding: 5px;
+          min-height: 100px;
+          margin-top: 10px;
+        }
+
+        .folder-item {
+          display: inline-flex;
+          flex-direction: column;
+          align-items: center;
+          width: 70px;
+          text-align: center;
+          margin: 5px;
+          cursor: pointer;
+        }
+
+        /* Window toolbar */
+        .window-toolbar {
+          display: flex;
+          margin-bottom: 10px; 
+          border-bottom: 1px solid var(--win98-darker); 
+          padding-bottom: 5px;
+        }
+
+        /* Info bar */
+        .window-infobar {
+          border-top: 1px solid var(--win98-darker); 
+          padding: 5px; 
+          font-size: 10px; 
+          color: var(--win98-darker);
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: var(--win98-gray);
+        }
+
+        /* Ensure hidden windows are truly hidden */
+        .hidden {
+          display: none !important;
+        }
+
+        /* Status item */
+        .status-item {
+          display: flex;
+          align-items: center;
+          height: 22px;
+          padding: 0 5px;
+          border: 1px solid;
+          border-color: var(--win98-darker) var(--win98-light) var(--win98-light) var(--win98-darker);
+          margin-right: 3px;
+          background: var(--win98-gray);
+        }
+    </style>
+</head>
+<body>
+    <div class="win98-desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="desktop-icon" data-window="welcome-window">
+                <div class="desktop-icon-img">🌐</div>
+                <div class="desktop-icon-label">BasedNet</div>
+            </div>
+            <div class="desktop-icon" data-window="sites-window">
+                <div class="desktop-icon-img">📊</div>
+                <div class="desktop-icon-label">Active Sites</div>
+            </div>
+            <div class="desktop-icon" data-window="files-window">
+                <div class="desktop-icon-img">📁</div>
+                <div class="desktop-icon-label">My Files</div>
+            </div>
+            <div class="desktop-icon" data-window="webring-window">
+                <div class="desktop-icon-img">⭕</div>
+                <div class="desktop-icon-label">Webring</div>
+            </div>
+            <div class="desktop-icon" data-window="about-window">
+                <div class="desktop-icon-img">❓</div>
+                <div class="desktop-icon-label">Help</div>
+            </div>
+        </div>
+
+        <!-- Welcome Window -->
+        <div id="welcome-window" class="window" style="width: 500px; height: 400px; top: 50px; left: 100px; z-index: 100;">
+            <div class="window-title">
+                <div class="title-text">
+                    <div style="margin-right: 5px;">📟</div>
+                    BASEDNET.EXE
+                </div>
+                <div class="window-controls">
+                    <div class="window-control window-minimize">_</div>
+                    <div class="window-control window-maximize">□</div>
+                    <div class="window-control window-close">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <pre class="ascii-art retrowave-glow">
+ ▄▄▄▄    ▄▄▄        ██████ ▓█████ ▓█████▄  ███▄    █ ▓█████▄▄▄█████▓
+▓█████▄ ▒████▄    ▒██    ▒ ▓█   ▀ ▒██▀ ██▌ ██ ▀█   █ ▓█   ▀▓  ██▒ ▓▒
+▒██▒ ▄██▒██  ▀█▄  ░ ▓██▄   ▒███   ░██   █▌▓██  ▀█ ██▒▒███  ▒ ▓██░ ▒░
+▒██░█▀  ░██▄▄▄▄██   ▒   ██▒▒▓█  ▄ ░▓█▄   ▌▓██▒  ▐▌██▒▒▓█  ▄░ ▓██▓ ░ 
+░▓█  ▀█▓ ▓█   ▓██▒▒██████▒▒░▒████▒░▒████▓ ▒██░   ▓██░░▒████▒ ▒██▒ ░ 
+░▒▓███▀▒ ▒▒   ▓▒█░▒ ▒▓▒ ▒ ░░░ ▒░ ░ ▒▒▓  ▒ ░ ▒░   ▒ ▒ ░░ ▒░ ░ ▒ ░░   
+▒░▒   ░   ▒   ▒▒ ░░ ░▒  ░ ░ ░ ░  ░ ░ ▒  ▒ ░ ░░   ░ ▒░ ░ ░  ░   ░    
+ ░    ░   ░   ▒   ░  ░  ░     ░    ░ ░  ░    ░   ░ ░    ░    ░      
+ ░            ░  ░      ░     ░  ░   ░             ░    ░  ░         
+      ░                            ░                                   
+                </pre>
+                
+                <div class="alert-98">
+                    <div style="font-size: 32px; margin-right: 10px;">💾</div>
+                    <div class="alert-98-content">
+                        <p style="margin-bottom: 5px;"><b>Web 1.0 Lives Forever</b></p>
+                        <p>Create, host, and share your personal website with BasedNet</p>
+                        <p style="margin-top: 10px;">
+                            <button class="btn-98" onclick="showWindow('sites-window')">Browse Sites</button>
+                            <button class="btn-98" onclick="showWindow('files-window')">My Files</button>
+                        </p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 15px; text-align: center;">
+                    Welcome to BasedNet - Your portal to the authentic web experience.<br>
+                    Click on any desktop icon to explore the Windows 98 style interface.
+                </p>
+            </div>
+            <div class="window-infobar">
+                System: Ready | Memory: 640K OK | <span id="welcome-clock">12:34 PM</span>
+            </div>
+        </div>
+
+        <!-- Active Sites Window -->
+        <div id="sites-window" class="window hidden" style="width: 600px; height: 400px; top: 70px; left: 150px;">
+            <div class="window-title">
+                <div class="title-text">
+                    <div style="margin-right: 5px;">🌐</div>
+                    Active Sites
+                </div>
+                <div class="window-controls">
+                    <div class="window-control window-minimize">_</div>
+                    <div class="window-control window-maximize">□</div>
+                    <div class="window-control window-close">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="address-bar">
+                    <label for="active-sites-address" style="margin-right: 5px;">Address:</label>
+                    <input 
+                      id="active-sites-address"
+                      type="text" 
+                      value="C:\BASEDNET\ACTIVE_SITES.HTM" 
+                      style="flex: 1; border: 1px solid var(--win98-darker);" 
+                      readonly
+                      aria-label="Address bar for active sites"
+                      title="Address bar showing current location"
+                    >
+                    <button class="btn-98" style="margin-left: 5px;">Go</button>
+                </div>
+                
+                <div class="tabs-98">
+                    <div class="tab-98 active">Sites</div>
+                    <div class="tab-98">Details</div>
+                    <div class="tab-98">Preview</div>
+                </div>
+                <div class="tab-content-98">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 20px;"></th>
+                                <th>Site</th>
+                                <th>Last Updated</th>
+                                <th>Views</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>📄</td>
+                                <td><a href="#">cool-site-88</a></td>
+                                <td>2 hours ago</td>
+                                <td>1,337</td>
+                            </tr>
+                            <tr>
+                                <td>📄</td>
+                                <td><a href="#">retro-haven</a></td>
+                                <td>5 hours ago</td>
+                                <td>420</td>
+                            </tr>
+                            <tr>
+                                <td>📄</td>
+                                <td><a href="#">pixel-dreams</a></td>
+                                <td>8 hours ago</td>
+                                <td>808</td>
+                            </tr>
+                            <tr>
+                                <td>📄</td>
+                                <td><a href="#">win98-museum</a></td>
+                                <td>1 day ago</td>
+                                <td>1,024</td>
+                            </tr>
+                            <tr>
+                                <td>📄</td>
+                                <td><a href="#">digital-nostalgia</a></td>
+                                <td>2 days ago</td>
+                                <td>512</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="window-toolbar" style="margin-top: 10px; padding-top: 5px; border-top: 1px solid var(--win98-darker); border-bottom: none;">
+                    <button class="btn-98">Refresh</button>
+                    <button class="btn-98">View Site</button>
+                    <button class="btn-98">Properties</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- File Manager Window -->
+        <div id="files-window" class="window hidden" style="width: 600px; height: 400px; top: 90px; left: 200px;">
+            <div class="window-title">
+                <div class="title-text">
+                    <div style="margin-right: 5px;">📂</div>
+                    Site Manager
+                </div>
+                <div class="window-controls">
+                    <div class="window-control window-minimize">_</div>
+                    <div class="window-control window-maximize">□</div>
+                    <div class="window-control window-close">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="address-bar">
+                    <label for="site-manager-location" style="margin-right: 5px;">Location:</label>
+                    <input 
+                      id="site-manager-location"
+                      type="text" 
+                      value="C:\BASEDNET\MY_SITE\" 
+                      style="flex: 1; border: 1px solid var(--win98-darker);" 
+                      readonly
+                      aria-label="Location bar for site manager"
+                      title="File location path"
+                    >
+                    <button class="btn-98" style="margin-left: 5px;">Go</button>
+                </div>
+                
+                <div class="window-toolbar">
+                    <button class="btn-98">
+                        <span style="margin-right: 3px;">📤</span> Upload
+                    </button>
+                    <button class="btn-98">
+                        <span style="margin-right: 3px;">📁</span> New Folder
+                    </button>
+                    <button class="btn-98">
+                        <span style="margin-right: 3px;">📝</span> Edit
+                    </button>
+                    <button class="btn-98">
+                        <span style="margin-right: 3px;">❌</span> Delete
+                    </button>
+                </div>
+                
+                <div class="folder-view">
+                    <div class="folder-item">
+                        <div style="font-size: 32px;">📁</div>
+                        <span>images</span>
+                    </div>
+                    <div class="folder-item">
+                        <div style="font-size: 32px;">📄</div>
+                        <span>index.html</span>
+                    </div>
+                    <div class="folder-item">
+                        <div style="font-size: 32px;">📄</div>
+                        <span>style.css</span>
+                    </div>
+                    <div class="folder-item">
+                        <div style="font-size: 32px;">📄</div>
+                        <span>script.js</span>
+                    </div>
+                    <div class="folder-item">
+                        <div style="font-size: 32px;">📄</div>
+                        <span>about.html</span>
+                    </div>
+                </div>
+
+                <div class="window-infobar">
+                    5 items | 24.5 KB used | 5.00 MB free
+                </div>
+            </div>
+        </div>
+
+        <!-- Webring Window -->
+        <div id="webring-window" class="window hidden" style="width: 450px; height: 350px; top: 110px; left: 250px;">
+            <div class="window-title">
+                <div class="title-text">
+                    <div style="margin-right: 5px;">⭕</div>
+                    Webring Navigator
+                </div>
+                <div class="window-controls">
+                    <div class="window-control window-minimize">_</div>
+                    <div class="window-control window-maximize">□</div>
+                    <div class="window-control window-close">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <div class="window-toolbar" style="justify-content: center;">
+                    <button class="btn-98">
+                        <span style="margin-right: 3px;">◀</span> Previous
+                    </button>
+                    <button class="btn-98">
+                        <span style="margin-right: 3px;">🔀</span> Random
+                    </button>
+                    <button class="btn-98">
+                        Next <span style="margin-left: 3px;">▶</span>
+                    </button>
+                </div>
+                
+                <div style="padding: 10px; background: #ffffff; border: 1px solid var(--win98-darker); text-align: center; margin-top: 10px;">
+                    <div style="margin-bottom: 10px;">
+                        <span style="font-size: 24px;">⭕</span>
+                    </div>
+                    <div class="ascii-art" style="font-size: 10px; line-height: 1.3;">
+    [Your Site]
+        ↓
+  [Previous] → [Random] → [Next]
+        ↑
+    [Return]
+                    </div>
+                    <p style="margin-top: 10px; font-size: 12px;">
+                        <b>Currently browsing:</b> Retro Web Webring
+                    </p>
+                    <p style="color: var(--win98-darker); font-size: 10px; margin-top: 5px;">
+                        42 sites in this webring | Position: 13/42
+                    </p>
+                </div>
+                
+                <div style="margin-top: 10px;">
+                    <label style="display: block; margin-bottom: 5px; font-size: 11px;"><b>Available Webrings:</b></label>
+                    <select style="width: 100%" id="webring-select" aria-label="Available Webrings">
+                        <option>Retro Web Webring</option>
+                        <option>Pixel Art Community</option>
+                        <option>Indie Developers Circle</option>
+                        <option>Digital Gardeners</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- About/Help Window -->
+        <div id="about-window" class="window hidden" style="width: 400px; height: 300px; top: 130px; left: 300px;">
+            <div class="window-title">
+                <div class="title-text">
+                    <div style="margin-right: 5px;">❓</div>
+                    BasedNet Help
+                </div>
+                <div class="window-controls">
+                    <div class="window-control window-minimize">_</div>
+                    <div class="window-control window-maximize">□</div>
+                    <div class="window-control window-close">×</div>
+                </div>
+            </div>
+            <div class="window-content">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 48px; margin: 10px 0;">📚</div>
+                    <h2 style="font-size: 14px;">BasedNet Help Center</h2>
+                    <p>Version 1.0</p>
+                </div>
+
+                <div style="border: 1px solid var(--win98-darker); padding: 10px; background: white;">
+                    <p><b>Quick Tips:</b></p>
+                    <ul style="margin-left: 20px; margin-top: 5px;">
+                        <li>Double-click on desktop icons to open windows</li>
+                        <li>Click and drag on title bars to move windows</li>
+                        <li>Click the × button to close windows</li>
+                        <li>Click the Start button to access the menu</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 15px; text-align: center;">
+                    <button class="btn-98" onclick="closeAllWindows()">Close All Windows</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Bar (Windows 98 Taskbar) -->
+        <div class="navbar-98">
+            <div class="btn-98 start-button" id="start-button">
+                <div style="margin-right: 3px;">🪟</div> Start
+            </div>
+            
+            <div id="taskbar-buttons">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            
+            <!-- System tray -->
+            <div class="system-tray">
+                <div class="tray-icon" title="Connected to IPFS Network">📡</div>
+                <div class="tray-icon" title="Network Active">🔌</div>
+                <div class="win98-clock" id="taskbar-clock">12:34 PM</div>
+            </div>
+        </div>
+
+        <!-- Start Menu -->
+        <div id="start-menu" class="start-menu">
+            <div class="start-menu-sidebar">
+                BasedNet
+            </div>
+            <div class="start-menu-items">
+                <div class="start-menu-item" data-window="welcome-window">
+                    <span>🏠</span> Home
+                </div>
+                <div class="start-menu-item" data-window="sites-window">
+                    <span>🌐</span> Browse Sites
+                </div>
+                <div class="start-menu-item" data-window="webring-window">
+                    <span>⭕</span> Webrings
+                </div>
+                
+                <div class="separator-98"></div>
+                
+                <div class="start-menu-item" data-window="files-window">
+                    <span>📁</span> My Files
+                </div>
+                <div class="start-menu-item">
+                    <span>👤</span> Profile
+                </div>
+                
+                <div class="separator-98"></div>
+                
+                <div class="start-menu-item" data-window="about-window">
+                    <span>❓</span> Help
+                </div>
+                <div class="start-menu-item" onclick="shutdown()">
+                    <span>🚪</span> Shut Down...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Window management
+        let activeWindow = 'welcome-window';
+        const windows = {};
+        const taskbarButtons = {};
+
+        // Initialize all windows
+        document.querySelectorAll('.window').forEach(win => {
+            const id = win.id;
+            windows[id] = {
+                element: win,
+                minimized: false,
+                maximized: false,
+                position: {
+                    top: win.style.top,
+                    left: win.style.left,
+                    width: win.style.width,
+                    height: win.style.height
+                }
+            };
+            
+            // Make window draggable
+            makeDraggable(win);
+            
+            // Create taskbar button if window is visible
+            if (!win.classList.contains('hidden')) {
+                createTaskbarButton(id);
+            }
+        });
+
+        // Make a window draggable by its title bar
+        function makeDraggable(element) {
+            const titleBar = element.querySelector('.window-title');
+            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            
+            titleBar.onmousedown = dragMouseDown;
+            
+            function dragMouseDown(e) {
+                e.preventDefault();
+                // Get mouse position at startup
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                // Call function on mouse move
+                document.onmousemove = elementDrag;
+                
+                // Bring window to front
+                bringToFront(element.id);
+            }
+            
+            function elementDrag(e) {
+                e.preventDefault();
+                // Calculate new position
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                // Set element's new position
+                element.style.top = (element.offsetTop - pos2) + "px";
+                element.style.left = (element.offsetLeft - pos1) + "px";
+            }
+            
+            function closeDragElement() {
+                // Stop moving when mouse button is released
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        // Attach event listeners to window controls
+        document.querySelectorAll('.window-control').forEach(control => {
+            control.addEventListener('click', function() {
+                const window = this.closest('.window');
+                const windowId = window.id;
+                
+                if (this.classList.contains('window-close')) {
+                    hideWindow(windowId);
+                } else if (this.classList.contains('window-minimize')) {
+                    minimizeWindow(windowId);
+                } else if (this.classList.contains('window-maximize')) {
+                    maximizeWindow(windowId);
+                }
+            });
+        });
+
+        // Desktop icons click handler
+        document.querySelectorAll('.desktop-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const windowId = this.getAttribute('data-window');
+                if (windowId) {
+                    showWindow(windowId);
+                }
+            });
+        });
+
+        // Start menu
+        const startButton = document.getElementById('start-button');
+        const startMenu = document.getElementById('start-menu');
+        
+        startButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            startMenu.classList.toggle('active');
+        });
+        
+        // Close start menu when clicking elsewhere
+        document.addEventListener('click', function() {
+            startMenu.classList.remove('active');
+        });
+        
+        // Prevent clicks inside start menu from closing it
+        startMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        
+        // Start menu items
+        document.querySelectorAll('.start-menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const windowId = this.getAttribute('data-window');
+                if (windowId) {
+                    showWindow(windowId);
+                    startMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Window management functions
+        function showWindow(id) {
+            const win = windows[id];
+            if (!win) return;
+            
+            win.element.classList.remove('hidden');
+            win.minimized = false;
+            
+            // Create taskbar button if it doesn't exist
+            if (!taskbarButtons[id]) {
+                createTaskbarButton(id);
+            }
+            
+            // Update taskbar button state
+            updateTaskbarButton(id, true);
+            
+            // Bring window to front
+            bringToFront(id);
+        }
+        
+        function hideWindow(id) {
+            const win = windows[id];
+            if (!win) return;
+            
+            win.element.classList.add('hidden');
+            
+            // Remove taskbar button
+            if (taskbarButtons[id]) {
+                taskbarButtons[id].remove();
+                delete taskbarButtons[id];
+            }
+            
+            // Find next window to activate
+            const visibleWindows = Object.keys(windows).filter(wid => 
+                !windows[wid].element.classList.contains('hidden')
+            );
+            
+            if (visibleWindows.length > 0) {
+                bringToFront(visibleWindows[visibleWindows.length - 1]);
+            }
+        }
+        
+        function minimizeWindow(id) {
+            const win = windows[id];
+            if (!win) return;
+            
+            win.element.classList.add('hidden');
+            win.minimized = true;
+            
+            // Update taskbar button state
+            updateTaskbarButton(id, false);
+            
+            // Find next window to activate
+            const visibleWindows = Object.keys(windows).filter(wid => 
+                !windows[wid].element.classList.contains('hidden') && !windows[wid].minimized
+            );
+            
+            if (visibleWindows.length > 0) {
+                bringToFront(visibleWindows[visibleWindows.length - 1]);
+            }
+        }
+        
+        function maximizeWindow(id) {
+            const win = windows[id];
+            if (!win) return;
+            
+            if (!win.maximized) {
+                // Save current position and size
+                win.position = {
+                    top: win.element.style.top,
+                    left: win.element.style.left,
+                    width: win.element.style.width,
+                    height: win.element.style.height
+                };
+                
+                // Maximize
+                win.element.style.top = '0';
+                win.element.style.left = '0';
+                win.element.style.width = '100%';
+                win.element.style.height = 'calc(100% - 30px)'; // 30px for taskbar
+                win.maximized = true;
+            } else {
+                // Restore
+                win.element.style.top = win.position.top;
+                win.element.style.left = win.position.left;
+                win.element.style.width = win.position.width;
+                win.element.style.height = win.position.height;
+                win.maximized = false;
+            }
+            
+            bringToFront(id);
+        }
+        
+        function bringToFront(id) {
+            const win = windows[id];
+            if (!win || win.minimized) return;
+            
+            // Set active window
+            activeWindow = id;
+            
+            // Update z-index for all windows
+            Object.keys(windows).forEach(wid => {
+                if (wid === id) {
+                    windows[wid].element.style.zIndex = 100;
+                } else {
+                    windows[wid].element.style.zIndex = 10;
+                }
+            });
+            
+            // Update taskbar buttons
+            Object.keys(taskbarButtons).forEach(wid => {
+                updateTaskbarButton(wid, wid === id);
+            });
+        }
+        
+        function createTaskbarButton(id) {
+            const win = windows[id];
+            if (!win) return;
+            
+            const windowTitle = win.element.querySelector('.window-title .title-text').textContent.trim();
+            const windowIcon = win.element.querySelector('.window-title .title-text div').textContent.trim();
+            
+            const button = document.createElement('div');
+            button.className = 'taskbar-button';
+            button.innerHTML = `
+                <div class="taskbar-icon">${windowIcon}</div>
+                <div class="taskbar-text">${windowTitle}</div>
+            `;
+            
+            button.addEventListener('click', function() {
+                if (activeWindow === id && !win.minimized) {
+                    minimizeWindow(id);
+                } else {
+                    showWindow(id);
+                }
+            });
+            
+            document.getElementById('taskbar-buttons').appendChild(button);
+            taskbarButtons[id] = button;
+            
+            // Set initial state
+            updateTaskbarButton(id, activeWindow === id);
+        }
+        
+        function updateTaskbarButton(id, isActive) {
+            const button = taskbarButtons[id];
+            if (!button) return;
+            
+            if (isActive) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
+            }
+        }
+        
+        function closeAllWindows() {
+            Object.keys(windows).forEach(hideWindow);
+        }
+        
+        // "Shut Down" function
+        function shutdown() {
+            if (confirm('Are you sure you want to shut down your computer now?')) {
+                document.body.style.backgroundColor = 'black';
+                
+                // Show shutdown message
+                const shutdownMsg = document.createElement('div');
+                shutdownMsg.style = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: white;
+                    font-family: "MS Sans Serif", Arial, sans-serif;
+                    font-size: 20px;
+                    text-align: center;
+                `;
+                shutdownMsg.innerHTML = `
+                    <p>It's now safe to turn off your computer.</p>
+                    <p style="margin-top: 20px;">
+                        <button onclick="location.reload()">Restart</button>
+                    </p>
+                `;
+                document.body.innerHTML = '';
+                document.body.appendChild(shutdownMsg);
+            }
+        }
+        
+        // Update clock
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('taskbar-clock').textContent = timeString;
+            
+            // Also update any other clocks
+            if (document.getElementById('welcome-clock')) {
+                document.getElementById('welcome-clock').textContent = timeString;
+            }
+            
+            setTimeout(updateClock, 1000);
+        }
+        
+        // Initialize
+        updateClock();
+    </script>
+</body>
+</html>
