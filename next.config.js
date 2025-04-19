@@ -12,8 +12,9 @@ const nextConfig = {
   
   experimental: {
     // Enable modern features
-    serverComponentsExternalPackages: [], // For better handling of server components
     optimizeCss: true, // For CSS optimization
+    serverExternalPackages: ["@sentry/nextjs", "@upstash/ratelimit", "@upstash/redis", "cors", "dotenv", "firebase", "firebase-admin", "helmet", "ipfs-http-client", "next-auth", "pg", "rate-limiter-flexible", "zod"], // For better handling of server components
+    swcMinify: true, // For minification of JavaScript and CSS files using SWC
   },
   
   // Disable unnecessary source maps in production

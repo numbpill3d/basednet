@@ -13,16 +13,25 @@ const rl = readline.createInterface({
 function runCommand(command) {
   return new Promise((resolve, reject) => {
     console.log(`Running: ${command}`);
+    let stdout = '';
+    let stderr = '';
     const childProcess = exec(command);
-    
-    childProcess.stdout.pipe(process.stdout);
-    childProcess.stderr.pipe(process.stderr);
+
+    childProcess.stdout.on('data', (data) => {
+      stdout += data;
+      process.stdout.write(data); // Pipe to console
+    });
+
+    childProcess.stderr.on('data', (data) => {
+      stderr += data;
+      process.stderr.write(data); // Pipe to console
+    });
     
     childProcess.on('close', (code) => {
       if (code === 0) {
         resolve();
       } else {
-        reject(new Error(`Command failed with exit code ${code}`));
+        reject(new Error(`Command failed with exit code ${code}\nStdout: ${stdout}\nStderr: ${stderr}`));
       }
     });
   });
