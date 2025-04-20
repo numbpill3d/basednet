@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const path = require('path');
+
 const nextConfig = {
   reactStrictMode: true,
   
@@ -25,6 +27,12 @@ const nextConfig = {
   // Disable image optimization if not needed (reduces build time)
   images: {
     unoptimized: process.env.NODE_ENV === 'development',
+  },
+  
+  // Force alias resolution for Vercel build
+  webpack: (config) => {
+    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
+    return config;
   },
 };
 
