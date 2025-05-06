@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-import path from 'path';
+const path = require('path');
 
 const nextConfig = {
   reactStrictMode: true,
@@ -36,4 +36,4 @@ const nextConfig = {
 };
 
 // Exporting the configuration without Sentry for now
-export default nextConfig;
+module.exports = nextConfig;

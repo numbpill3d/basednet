@@ -36,4 +36,4 @@ const nextConfig = {
 };
 
 // Exporting the configuration without Sentry for now
-export default nextConfig;
+module.exports = nextConfig;

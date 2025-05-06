@@ -59,27 +59,11 @@ export async function query<T extends Record<string, any> = any>(
   try {
     const res = await pool.query<T>(text, params);
     const duration = Date.now() - start;
-
-    // Only log in development environment
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('Executed query', { text, duration, rows: res.rowCount });
-    }
-
-    // Log slow queries in production for monitoring
-    if (process.env.NODE_ENV === 'production' && duration > 1000) {
-      console.warn('Slow query detected', { text, duration, rows: res.rowCount });
-    }
-
+    console.log('Executed query', { text, duration, rows: res.rowCount });
     return res;
   } catch (err) {
     const error = err as Error;
     console.error('Query error:', error.message);
-
-    // In production, we might want to report this to a monitoring service
-    if (process.env.NODE_ENV === 'production' && process.env.SENTRY_DSN) {
-      // Sentry or other error reporting would go here
-    }
-
     throw error;
   }
 }
