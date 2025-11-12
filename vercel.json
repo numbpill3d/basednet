@@ -5,13 +5,16 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "env": {
-    "DATABASE_URL": "postgresql://user:password@host:5432/basednet",
-    "NEXTAUTH_URL": "https://basednet.vercel.app",
+    "DATABASE_URL": "@database-url",
+    "NEXTAUTH_URL": "https://basednet.lol",
     "NEXTAUTH_SECRET": "@nextauth-secret",
     "INDIE_AUTH_CLIENT_ID": "@indie-auth-client-id",
     "INDIE_AUTH_CLIENT_SECRET": "@indie-auth-client-secret",
     "IPFS_PROJECT_ID": "@ipfs-project-id",
-    "IPFS_PROJECT_SECRET": "@ipfs-project-secret"
+    "IPFS_PROJECT_SECRET": "@ipfs-project-secret",
+    "IPFS_GATEWAY": "https://ipfs.io/ipfs/",
+    "UPSTASH_REDIS_REST_URL": "@upstash-redis-url",
+    "UPSTASH_REDIS_REST_TOKEN": "@upstash-redis-token"
   },
   "build": {
     "env": {
