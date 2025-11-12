@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCurrentUser } from '../../../lib/auth';
 import { IpfsContentModel } from '../../../db/models/ipfs-content';
+import { createIpfsContentSchema, validateBody } from '../../../lib/validation';
 
 export async function GET(req: NextRequest) {
   try {
@@ -33,20 +34,23 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const data = await req.json();
-    const { cid, contentType, filename, size } = data;
+    const body = await req.json();
 
-    if (!cid) {
+    // Validate input
+    const validation = validateBody(createIpfsContentSchema, body);
+    if (!validation.success) {
       return NextResponse.json(
-        { error: 'CID is required' },
+        { error: validation.error },
         { status: 400 }
       );
     }
 
+    const { cid, content_type, filename, size } = validation.data;
+
     const content = await IpfsContentModel.create(
       user.id,
       cid,
-      contentType,
+      content_type,
       filename,
       size
     );

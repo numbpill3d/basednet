@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getCurrentUser, requireAuth } from '../../../lib/auth';
 import { ProfileModel } from '../../../db/models/profile';
+import { updateProfileSchema, validateBody } from '../../../lib/validation';
 
 export async function GET(req: NextRequest) {
   try {
@@ -27,9 +28,19 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const data = await req.json();
-    const profile = await ProfileModel.update(user.id, data);
-    
+    const body = await req.json();
+
+    // Validate input
+    const validation = validateBody(updateProfileSchema, body);
+    if (!validation.success) {
+      return NextResponse.json(
+        { error: validation.error },
+        { status: 400 }
+      );
+    }
+
+    const profile = await ProfileModel.update(user.id, validation.data);
+
     if (!profile) {
       return NextResponse.json(
         { error: 'Profile not found' },

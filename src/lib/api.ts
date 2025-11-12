@@ -179,11 +179,83 @@ export const ipfsApi = {
   },
 };
 
+/**
+ * API client for webring-related endpoints
+ */
+export const webringApi = {
+  /**
+   * List all webrings
+   */
+  listWebrings: async ({ limit = 50, offset = 0 }: PaginationParams = {}) => {
+    return fetchApi<{ webrings: any[] }>(
+      `/api/webrings?limit=${limit}&offset=${offset}`
+    );
+  },
+
+  /**
+   * Get a specific webring by ID
+   */
+  getWebring: async (id: number) => {
+    return fetchApi<{ webring: any; members: any[] }>(`/api/webrings/${id}`);
+  },
+
+  /**
+   * Create a new webring
+   */
+  createWebring: async (data: { name: string; description: string }) => {
+    return fetchApi<{ webring: any }>('/api/webrings', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
+  /**
+   * Delete a webring
+   */
+  deleteWebring: async (id: number) => {
+    return fetchApi<{ success: boolean }>(`/api/webrings/${id}`, {
+      method: 'DELETE',
+    });
+  },
+
+  /**
+   * Join a webring
+   */
+  joinWebring: async (id: number) => {
+    return fetchApi<{ success: boolean }>(`/api/webrings/${id}/join`, {
+      method: 'POST',
+    });
+  },
+
+  /**
+   * Leave a webring
+   */
+  leaveWebring: async (id: number) => {
+    return fetchApi<{ success: boolean }>(`/api/webrings/${id}/join`, {
+      method: 'DELETE',
+    });
+  },
+
+  /**
+   * Navigate to next, previous, or random member in a webring
+   */
+  navigate: async (
+    id: number,
+    direction: 'next' | 'previous' | 'random',
+    fromUserId: number
+  ) => {
+    return fetchApi<{ userId: number; username: string; url: string }>(
+      `/api/webrings/${id}/navigate?direction=${direction}&from=${fromUserId}`
+    );
+  },
+};
+
 // Export a combined API object
 export const api = {
   user: userApi,
   profile: profileApi,
   ipfs: ipfsApi,
+  webring: webringApi,
 };
 
 export default api;
