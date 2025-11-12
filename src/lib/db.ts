@@ -1,4 +1,4 @@
-import { Pool, QueryResult, PoolClient } from 'pg';
+import { Pool, QueryResult, PoolClient, QueryResultRow } from 'pg';
 
 // Define types for our database entities
 interface User {
@@ -46,7 +46,7 @@ pool.query('SELECT NOW()', (err: Error | null) => {
 });
 
 // Helper functions for common database operations
-export async function query<T = any>(
+export async function query<T extends QueryResultRow = any>(
   text: string,
   params?: any[]
 ): Promise<QueryResult<T>> {
