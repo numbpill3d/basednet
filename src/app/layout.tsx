@@ -1,21 +1,10 @@
 import type { Metadata } from 'next'
 import React from 'react'
-import { Inter, Roboto_Mono } from 'next/font/google'
+// Google Fonts removed for better performance and offline builds
+// Using system fonts instead
 import './globals.css'
 import './nekoweb.css'
 import Providers from '@/components/Providers'
-
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-})
-
-const robotoMono = Roboto_Mono({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto-mono',
-})
 
 export const metadata: Metadata = {
   title: 'Basednet - The Next-Gen Indie Web Platform',
@@ -29,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${robotoMono.variable}`}>
+    <html lang="en">
       <body className="win98-desktop">
         <Providers>
           {children}

@@ -64,25 +64,20 @@ export const handlers = [
 
   // Error cases
   http.get('/api/error-test', () => {
-    return new HttpResponse(
-      JSON.stringify({ error: 'Internal Server Error' }),
+    return HttpResponse.json(
+      { error: 'Internal Server Error' },
       { status: 500 }
     )
   }),
 
   // Rate limiting test
   http.get('/api/rate-limited', () => {
-    return new HttpResponse(
-      JSON.stringify({ 
+    return HttpResponse.json(
+      {
         error: 'Too Many Requests',
         retryAfter: 60
-      }),
-      { 
-        status: 429,
-        headers: {
-          'Retry-After': '60'
-        }
-      }
+      },
+      { status: 429 }
     )
   })
 ]

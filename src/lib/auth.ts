@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth/next';
 import { Session } from 'next-auth';
-import { authOptions } from './auth-options';
+import { authOptions } from './authOptions';
 import { UserModel } from '../db/models/user';
 import { ProfileModel } from '../db/models/profile';
 

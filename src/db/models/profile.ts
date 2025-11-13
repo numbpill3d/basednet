@@ -58,7 +58,7 @@ export class ProfileModel {
   static async delete(userId: number): Promise<boolean> {
     const query = 'DELETE FROM profiles WHERE user_id = $1 RETURNING id';
     const result = await pool.query(query, [userId]);
-    return result.rowCount !== null && result.rowCount > 0;
+    return (result.rowCount ?? 0) > 0;
   }
 
   static async getTheme(userId: number): Promise<Record<string, any> | null> {
@@ -69,11 +69,11 @@ export class ProfileModel {
 
   static async updateTheme(userId: number, theme: Record<string, any>): Promise<boolean> {
     const query = `
-      UPDATE profiles 
-      SET theme_preferences = $2, updated_at = CURRENT_TIMESTAMP 
+      UPDATE profiles
+      SET theme_preferences = $2, updated_at = CURRENT_TIMESTAMP
       WHERE user_id = $1
     `;
     const result = await pool.query(query, [userId, JSON.stringify(theme)]);
-    return result.rowCount !== null && result.rowCount > 0;
+    return (result.rowCount ?? 0) > 0;
   }
 }

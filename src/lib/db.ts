@@ -1,4 +1,4 @@
-import { Pool, QueryResult, PoolClient } from 'pg';
+import { Pool, QueryResult, PoolClient, QueryResultRow } from 'pg';
 
 // Define types for our database entities
 interface User {
@@ -40,18 +40,13 @@ const pool = new Pool({
 pool.query('SELECT NOW()', (err: Error | null) => {
   if (err) {
     console.error('Database connection error:', err.message);
-    // In production, we might want to report this to a monitoring service
-    if (process.env.NODE_ENV === 'production' && process.env.SENTRY_DSN) {
-      // Sentry or other error reporting would go here
-    }
-  } else if (process.env.NODE_ENV !== 'production') {
-    // Only log in development
+  } else {
     console.log('Database connected successfully');
   }
 });
 
 // Helper functions for common database operations
-export async function query<T extends Record<string, any> = any>(
+export async function query<T extends QueryResultRow = any>(
   text: string,
   params?: any[]
 ): Promise<QueryResult<T>> {
@@ -59,27 +54,11 @@ export async function query<T extends Record<string, any> = any>(
   try {
     const res = await pool.query<T>(text, params);
     const duration = Date.now() - start;
-
-    // Only log in development environment
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('Executed query', { text, duration, rows: res.rowCount });
-    }
-
-    // Log slow queries in production for monitoring
-    if (process.env.NODE_ENV === 'production' && duration > 1000) {
-      console.warn('Slow query detected', { text, duration, rows: res.rowCount });
-    }
-
+    console.log('Executed query', { text, duration, rows: res.rowCount });
     return res;
   } catch (err) {
     const error = err as Error;
     console.error('Query error:', error.message);
-
-    // In production, we might want to report this to a monitoring service
-    if (process.env.NODE_ENV === 'production' && process.env.SENTRY_DSN) {
-      // Sentry or other error reporting would go here
-    }
-
     throw error;
   }
 }
@@ -116,7 +95,7 @@ export async function updateProfile(
   profileData: Partial<Profile>
 ): Promise<Profile> {
   const result = await query<Profile>(
-    `UPDATE profiles
+    `UPDATE profiles 
      SET display_name = $2,
          bio = $3,
          avatar_url = $4,

@@ -2,41 +2,30 @@
   "version": 2,
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
-  "installCommand": "npm ci",
+  "installCommand": "npm install",
   "framework": "nextjs",
+  "env": {
+    "DATABASE_URL": "@database-url",
+    "NEXTAUTH_URL": "https://basednet.lol",
+    "NEXTAUTH_SECRET": "@nextauth-secret",
+    "INDIE_AUTH_CLIENT_ID": "@indie-auth-client-id",
+    "INDIE_AUTH_CLIENT_SECRET": "@indie-auth-client-secret",
+    "IPFS_PROJECT_ID": "@ipfs-project-id",
+    "IPFS_PROJECT_SECRET": "@ipfs-project-secret",
+    "IPFS_GATEWAY": "https://ipfs.io/ipfs/",
+    "UPSTASH_REDIS_REST_URL": "@upstash-redis-url",
+    "UPSTASH_REDIS_REST_TOKEN": "@upstash-redis-token"
+  },
   "build": {
     "env": {
-      "NODE_VERSION": "20.x",
       "NODE_ENV": "production"
     }
   },
   "regions": ["iad1"],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
-    },
-    {
-      "source": "/static/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
+  "functions": {
+    "api/**/*.ts": {
+      "memory": 1024,
+      "maxDuration": 10
     }
-  ]
+  }
 }

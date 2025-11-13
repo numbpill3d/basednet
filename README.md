@@ -8,12 +8,27 @@ This project is deployed on Vercel. Check out the live version at [basednet.verc
 
 ## Features
 
+### Core Features ✅
 - **Personal Websites**: Create and customize your own personal website with HTML, CSS, and JavaScript
 - **IPFS Integration**: Host your content on the decentralized IPFS network
 - **Webrings**: Join and create webrings to connect with like-minded creators
+  - Create your own webrings
+  - Join existing communities
+  - Navigate through webring members (next, previous, random)
 - **Windows 98 Aesthetic**: Enjoy a nostalgic user interface inspired by Windows 98
 - **User Profiles**: Customize your profile with bio, avatar, and social links
 - **Content Management**: Upload, manage, and pin your IPFS content
+- **User Discovery**: Browse and search for creators and their sites
+- **Input Validation**: All API endpoints protected with Zod schema validation
+- **Security**: Rate limiting, security headers, and input sanitization
+
+### Pages
+- **Home** (`/`): Platform overview and statistics
+- **Browse** (`/browse`): Discover and search for user sites
+- **Webrings** (`/webrings`): View, create, join, and manage webrings
+- **Dashboard** (`/dashboard`): Manage your IPFS content
+- **Profile** (`/profile`): Edit your profile and customize your site
+- **Help** (`/help`): Comprehensive documentation and FAQ
 
 ## Getting Started
 

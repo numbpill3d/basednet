@@ -1,39 +1,71 @@
 /** @type {import('next').NextConfig} */
-import path from 'path';
-
 const nextConfig = {
   reactStrictMode: true,
-
-  env: {
-    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'https://basednet.lol',
-  },
-
-  // Optimize for Vercel deployment
-  output: 'standalone', // Creates a standalone build that's optimized for Vercel
-
-  experimental: {
-    // Enable modern features
-    optimizeCss: true, // For CSS optimization
-  },
-
-  // Disable unnecessary source maps in production
-  productionBrowserSourceMaps: false,
-
-  // Improve build performance
   swcMinify: true,
 
-  // Disable image optimization if not needed (reduces build time)
+  // Performance optimizations
+  compress: true,
+  poweredByHeader: false,
+
+  // Image optimization
   images: {
-    unoptimized: process.env.NODE_ENV === 'development',
+    domains: ['ipfs.io', 'gateway.pinata.cloud', 'cloudflare-ipfs.com'],
+    formats: ['image/avif', 'image/webp'],
   },
 
-  // Force alias resolution for Vercel build
-  webpack: (config) => {
-    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
-    return config;
+  // Security headers
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on'
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload'
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN'
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin'
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()'
+          }
+        ],
+      },
+    ]
   },
-};
 
-// Exporting the configuration without Sentry for now
-export default nextConfig;
+  // Webpack configuration
+  webpack: (config, { isServer }) => {
+    // Handle node modules that might need special treatment
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      }
+    }
+    return config
+  },
+
+  // Environment variables that should be available client-side
+  env: {
+    NEXT_PUBLIC_IPFS_GATEWAY: process.env.IPFS_GATEWAY || 'https://ipfs.io/ipfs/',
+  },
+}
+
+module.exports = nextConfig
