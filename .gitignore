@@ -1,42 +1,52 @@
+```
 # Dependencies
-node_modules
-.pnp
-.pnp.js
+node_modules/
 
-# Testing
-coverage
+# Environment
+.env
+.env.local
+.env.*
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
 *.log
 
-# Next.js
-.next/
-out/
-build
-dist
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
-# Production
-.vercel
-.env*.local
+# Build outputs
+dist/
+build/
+*.js
+*.ts
 
-# Environment files
-.env
-.env.production
-
-# Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Temp files
+*.tmp
+*.swp
+*.swo
 
 # OS
 .DS_Store
 Thumbs.db
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+# Coverage
+coverage/
+htmlcov/
+.coverage
 
-# Misc
-.turbo
-.cache
+# Cache
+.mypy_cache/
+.pytest_cache/
+.nyc_output/
+coverage/
+
+# System
+.DS_Store
+Thumbs.db
+```

@@ -94,4 +94,7 @@ export const authOptions: NextAuthOptions = {
     error: '/auth/error',
   },
   debug: process.env.NODE_ENV === 'development',
+  // Ensure proper domain configuration for production
+  secret: process.env.NEXTAUTH_SECRET,
+  trustHost: true,
 };

@@ -26,6 +26,26 @@ export class ApiError extends Error {
 }
 
 /**
+ * Get authentication token for API requests
+ * This function attempts to get the token from the NextAuth session
+ */
+async function getAuthToken(): Promise<string | null> {
+  // In client-side, we can use the getSession function
+  if (typeof window !== 'undefined') {
+    try {
+      // For client-side, we'll rely on NextAuth's automatic cookie handling
+      return null; // NextAuth handles authentication via cookies automatically
+    } catch (error) {
+      console.error('Error getting auth token:', error);
+      return null;
+    }
+  }
+  
+  // In server-side, we might need to extract token differently
+  return null;
+}
+
+/**
  * Base fetch function with error handling
  */
 async function fetchApi<T>(
@@ -33,12 +53,25 @@ async function fetchApi<T>(
   options: RequestInit = {}
 ): Promise<ApiResponse<T>> {
   try {
+    // For client-side requests, relative URLs work fine
+    // For server-side requests in Next.js, the fetch is handled internally
+    
+    // Get auth token if available
+    const token = await getAuthToken();
+    
+    const headers: HeadersInit = {
+      'Content-Type': 'application/json',
+      ...options.headers,
+    };
+    
+    // Add authorization header if token is available
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    
     const response = await fetch(url, {
       ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
+      headers,
     });
 
     const data = await response.json();
