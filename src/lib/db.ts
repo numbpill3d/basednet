@@ -31,9 +31,11 @@ if (!process.env.DATABASE_URL) {
 // Create a connection pool
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
+  max: process.env.NODE_ENV === 'production' ? 20 : 10, // Higher pool size in production
+  min: process.env.NODE_ENV === 'production' ? 5 : 2,   // Higher min in production
+  idleTimeoutMillis: process.env.NODE_ENV === 'production' ? 30000 : 10000,
+  connectionTimeoutMillis: 5000, // Increase timeout to 5 seconds
+  maxUses: process.env.NODE_ENV === 'production' ? 100 : 50, // Recycle connections after this many uses
 });
 
 // Test the connection on startup
