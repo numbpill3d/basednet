@@ -179,8 +179,8 @@ export default function Help() {
 
             <h3>How do I upload files to IPFS?</h3>
             <p>
-              You'll need to use an IPFS client or service (like Pinata, Infura, or a local IPFS node)
-              to upload files. Once uploaded, you'll receive a CID that you can add to your Basednet dashboard.
+              You&apos;ll need to use an IPFS client or service (like Pinata, Infura, or a local IPFS node)
+              to upload files. Once uploaded, you&apos;ll receive a CID that you can add to your Basednet dashboard.
             </p>
           </div>
         </div>

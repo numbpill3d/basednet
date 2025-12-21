@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { api } from '@/lib/api';
 
@@ -50,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [error, setError] = useState<string | null>(null);
 
   // Function to fetch user data
-  const fetchUserData = async () => {
+  const fetchUserData = useCallback(async () => {
     if (!session?.user) {
       setUser(null);
       setProfile(null);
@@ -81,7 +81,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [session?.user]);
 
   // Fetch user data when session changes
   useEffect(() => {
@@ -90,7 +90,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     
     fetchUserData();
-  }, [session, status]);
+  }, [session, status, fetchUserData]);
 
   // Login function
   const login = async () => {
@@ -115,9 +115,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   // Function to manually refresh user data
-  const refreshUserData = async () => {
+  const refreshUserData = useCallback(async () => {
     await fetchUserData();
-  };
+  }, [fetchUserData]);
 
   // Context value
   const value = {

@@ -20,7 +20,7 @@ export default function GlobalError({ error, reset }) {
         <div className="error-container">
           <div className="error-card">
             <h2>Something went wrong!</h2>
-            <p>We've encountered an unexpected error and our team has been notified.</p>
+            <p>We&apos;ve encountered an unexpected error and our team has been notified.</p>
             <div className="error-actions">
               <button onClick={() => reset()} className="retry-button">
                 Try again

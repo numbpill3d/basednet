@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-import path from 'path';
 
 const nextConfig = {
   reactStrictMode: true,
@@ -12,11 +11,6 @@ const nextConfig = {
   // Optimize for Vercel deployment
   output: 'standalone', // Creates a standalone build that's optimized for Vercel
 
-  experimental: {
-    // Enable modern features
-    optimizeCss: true, // For CSS optimization
-  },
-
   // Disable unnecessary source maps in production
   productionBrowserSourceMaps: false,
 
@@ -27,13 +21,7 @@ const nextConfig = {
   images: {
     unoptimized: process.env.NODE_ENV === 'development',
   },
-
-  // Force alias resolution for Vercel build
-  webpack: (config) => {
-    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
-    return config;
-  },
 };
 
-// Exporting the configuration without Sentry for now
+// Exporting the configuration
 export default nextConfig;

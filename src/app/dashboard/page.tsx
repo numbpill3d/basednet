@@ -179,7 +179,7 @@ export default function DashboardPage() {
       {isLoading ? (
         <p>Loading...</p>
       ) : content.length === 0 ? (
-        <p>You don't have any IPFS content yet.</p>
+        <p>You don&apos;t have any IPFS content yet.</p>
       ) : (
         <table>
           <thead>
