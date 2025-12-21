@@ -32,8 +32,8 @@ export default function Help() {
             <h2 style={{ marginTop: 0 }}>What is Basednet?</h2>
             <p>
               Basednet is a modern platform for creating personal websites with decentralized hosting,
-              community features, and a nostalgic Windows 98 aesthetic. It combines the best of Web 1.0's
-              indie spirit with Web3's decentralization.
+              community features, and a nostalgic Windows 98 aesthetic. It combines the best of Web 1.0&apos;s
+              indie spirit with Web3&apos;s decentralization.
             </p>
             <h3>Key Features:</h3>
             <ul>
@@ -54,8 +54,8 @@ export default function Help() {
           <div className="window-content">
             <h2 style={{ marginTop: 0 }}>Creating Your Account</h2>
             <ol>
-              <li>Click the "Login" button in the navigation bar</li>
-              <li>Sign in using IndieAuth (you'll need a personal domain or identity)</li>
+              <li>Click the &quot;Login&quot; button in the navigation bar</li>
+              <li>Sign in using IndieAuth (you&apos;ll need a personal domain or identity)</li>
               <li>Complete your profile with a display name, bio, and avatar</li>
               <li>Start customizing your site!</li>
             </ol>
@@ -116,12 +116,12 @@ export default function Help() {
             <h2 style={{ marginTop: 0 }}>Joining and Creating Webrings</h2>
             <p>
               Webrings are groups of related websites linked together in a circular structure.
-              They're a classic Web 1.0 way to discover new content!
+              They&apos;re a classic Web 1.0 way to discover new content!
             </p>
             <h3>How to Use Webrings:</h3>
             <ul>
               <li><strong>Browse:</strong> Visit the <Link href="/webrings" style={{ color: 'blue', textDecoration: 'underline' }}>Webrings page</Link> to see available communities</li>
-              <li><strong>Join:</strong> Click "Join" on any webring to become a member</li>
+              <li><strong>Join:</strong> Click &quot;Join&quot; on any webring to become a member</li>
               <li><strong>Create:</strong> Start your own webring around a topic you care about</li>
               <li><strong>Navigate:</strong> Use Previous/Random/Next buttons to explore member sites</li>
             </ul>
