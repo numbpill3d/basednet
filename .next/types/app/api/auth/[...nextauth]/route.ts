@@ -1,4 +1,4 @@
-// File: C:\Users\adoni\Desktop\projects\basednet\src\app\api\auth\[...nextauth]\route.ts
+// File: /workspaces/basednet/src/app/api/auth/[...nextauth]/route.ts
 import * as entry from '../../../../../../src/app/api/auth/[...nextauth]/route.js'
 import type { NextRequest } from 'next/server.js'
 

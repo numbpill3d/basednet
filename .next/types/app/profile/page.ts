@@ -1,4 +1,4 @@
-// File: C:\Users\adoni\Desktop\projects\basednet\src\app\profile\page.tsx
+// File: /workspaces/basednet/src/app/profile/page.tsx
 import * as entry from '../../../../src/app/profile/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
